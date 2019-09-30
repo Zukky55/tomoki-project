@@ -12,7 +12,7 @@ namespace VRShooting
     /// </summary>
     public class UpdateManager : MonoSingleton<UpdateManager>
     {
-        LinkedList<IUpdatable> updatables;
+        LinkedList<IUpdatable> updatables = new LinkedList<IUpdatable>();
         private void Update()
         {
             foreach (var updatable in updatables)
@@ -21,11 +21,11 @@ namespace VRShooting
             }
         }
 
-        public void SubscribeUpdate(LinkedListNode<IUpdatable> updatable)
+        public void SubscribeUpdate(IUpdatable updatable)
         {
             updatables.AddLast(updatable);
         }
-        public void UnsubscribeUpdate(LinkedListNode<IUpdatable> updatable)
+        public void UnsubscribeUpdate(IUpdatable updatable)
         {
             updatables.Remove(updatable);
         }

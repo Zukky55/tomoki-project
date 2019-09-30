@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour
+namespace VRShooting
 {
-
-    // Use this for initialization
-    void Start()
+    /// <summary>
+    /// 銃弾
+    /// </summary>
+    public class Bullet : MonoBehaviour
     {
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        public void Init(float fireSPD)
+        {
 
+        }
     }
 }

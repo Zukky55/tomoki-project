@@ -11,13 +11,13 @@ namespace VRShooting
     /// </summary>
     public abstract class ManagedMono : MonoBehaviour, IUpdatable
     {
-        LinkedListNode<IUpdatable> updatable;
+        UpdateManager updateManager;
         protected virtual void Awake()
         {
-            updatable = new LinkedListNode<IUpdatable>(this);
-            UpdateManager.Instance.SubscribeUpdate(updatable);
+            updateManager = UpdateManager.Instance;
+            updateManager.SubscribeUpdate(this);
         }
-        protected virtual void OnDestroy() => UpdateManager.Instance.UnsubscribeUpdate(updatable);
+        protected virtual void OnDestroy() => updateManager.UnsubscribeUpdate(this);
         public abstract void ManagedUpdate();
     }
 }

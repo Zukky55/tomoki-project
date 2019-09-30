@@ -17,7 +17,7 @@ namespace VRShooting
 
         private void Awake()
         {
-            
+            animator = GetComponent<Animator>();
         }
 
         public override void ManagedUpdate()

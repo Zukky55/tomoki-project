@@ -11,13 +11,12 @@ namespace VRShooting
     {
         /// <summary>機関銃のパラメーター</summary>
         public GunStatus Status => status;
-        //public Vector2 InputVector =>
+        /// <summary>マウスのスクロール差分ベクトル</summary>
+        public Vector3 InputVector => new Vector3(horizontal, vertical, 0f);
 
         [SerializeField] [Header("機関銃のパラメーター")] GunStatus status;
         [SerializeField] [Header("発射口")] Transform muzzle;
 
-        float horizontal;
-        float vertical;
 
         public void Fire()
         {
@@ -27,6 +26,10 @@ namespace VRShooting
 
         /// <summary>前フレームのmouse position</summary>
         Vector3 mousePrevPos = Vector3.zero;
+        /// <summary>Input X axis.</summary>
+        float horizontal = 0f;
+        /// <summary>Input Y axis.</summary>
+        float vertical = 0f;
         /// <summary>
         /// Managed Update
         /// </summary>
@@ -40,6 +43,12 @@ namespace VRShooting
                 vertical = mouseDiff.y;
                 mousePrevPos = Input.mousePosition;
             }
+            else
+            {
+                horizontal = vertical = 0f;
+            }
+
+            Debug.Log($"horizontal = {horizontal}, vertical = {vertical}");
         }
     }
 }

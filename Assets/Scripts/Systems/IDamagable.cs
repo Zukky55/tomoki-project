@@ -10,6 +10,6 @@ namespace VRShooting
 {
     public interface IDamagable
     {
-        void TakeDamage();
+        void TakeDamage(int amount);
     }
 }

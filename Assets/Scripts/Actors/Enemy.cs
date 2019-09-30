@@ -13,6 +13,13 @@ namespace VRShooting
 
         [SerializeField] [Header("敵のパラメーター")] EnemyStatus status;
 
+        Animator animator;
+
+        private void Awake()
+        {
+            
+        }
+
         public override void ManagedUpdate()
         {
 

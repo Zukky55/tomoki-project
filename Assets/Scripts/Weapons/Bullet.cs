@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 namespace VRShooting
 {
@@ -19,16 +20,12 @@ namespace VRShooting
 
         private void Start()
         {
-            Destroy(gameObject);
-        }
-
-        public void Init(Vector3 velocity)
-        {
-            this.velocity = velocity;
+            this.velocity = transform.forward * status.Spd;
         }
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log($"colicoli{collision.gameObject.name}");
             if (collision.gameObject.CompareTag(EnemyTag.Enemy.ToString()))
             {
                 var enemy = collision.gameObject.GetComponent<Enemy>();
@@ -40,6 +37,18 @@ namespace VRShooting
         {
             transform.position += velocity;
         }
-        public override void MUpdate() { }
+        public override void MUpdate()
+        {
+            Debug.Log(transform.position.magnitude);
+            if (transform.position.magnitude > 100)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public void Init(Vector3 spawnPos)
+        {
+            var dir = transform.position - spawnPos;
+        }
     }
 }

@@ -12,28 +12,35 @@ namespace VRShooting
     /// </summary>
     public class UpdateManager : MonoSingleton<UpdateManager>
     {
-        LinkedList<IUpdatable> updatables = new LinkedList<IUpdatable>();
+        List<IUpdatable> updatables = new List<IUpdatable>();
         private void Update()
         {
-            foreach (var updatable in updatables)
+            for (int index = 0; index < updatables.Count; index++)
             {
-                updatable.MUpdate();
-                updatable.MFixedUpdate();
-
+                updatables[index].MUpdate();
             }
+            //foreach (var updatable in updatables)
+            //{
+            //    updatable.MUpdate();
+            //    updatable.MFixedUpdate();
+            //}
         }
 
         private void FixedUpdate()
         {
-            foreach (var updatable in updatables)
+            for (int index = 0; index < updatables.Count; index++)
             {
-                //updatable.MFixedUpdate();
+                updatables[index].MFixedUpdate();
             }
+            //foreach (var updatable in updatables)
+            //    {
+            //        //updatable.MFixedUpdate();
+            //    }
         }
 
         public void SubscribeUpdate(IUpdatable updatable)
         {
-            updatables.AddLast(updatable);
+            updatables.Add(updatable);
         }
         public void UnsubscribeUpdate(IUpdatable updatable)
         {

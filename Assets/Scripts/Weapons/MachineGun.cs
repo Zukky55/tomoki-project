@@ -45,7 +45,9 @@ namespace VRShooting
         [SerializeField] Transform barrel;
         /// <summary>Clamp of <see cref="InputVector"/></summary>
         [SerializeField] Clamp clamp;
+        /// <summary><see cref="barrel"/>の仰角の回転制限値の閾値</summary>
         [SerializeField] float elevationAngleLimit = 45f;
+
 
         /// <summary>
         /// Managed Update
@@ -53,45 +55,40 @@ namespace VRShooting
         public override void MUpdate()
         {
             SetInputVector();
-
-            if (InputVector != Vector3.zero)
-            {
-                Roll();
-            }
+            Roll();
+            if (Input.GetMouseButton(0)) Fire();
         }
 
-
-        Vector2 rollBuffer = new Vector2();
+        /// <summary>
+        /// 機関銃の旋回処理
+        /// </summary>
         private void Roll()
         {
-            // マウススクロールした分を加算
-            //rollBuffer.x += InputVector.y;
-            //rollBuffer.y += InputVector.x;
+            if (InputVector == Vector3.zero) return;
 
-            if (InputVector.x != 0f)
+            var tripodRot = Quaternion.Euler(0f, InputVector.x * status.RollSpd, 0f);
+            var barrelRot = Quaternion.Euler(InputVector.y * status.RollSpd, 0f, 0f);
+            transform.rotation = tripodRot * transform.rotation;
+            barrel.localRotation = barrelRot * barrel.localRotation;
+            // 可動域制限を超えた場合クランプを掛ける
+            var eulerX = barrel.localRotation.eulerAngles.x;
+            // 仰角が無回転時0fの状態から手前に旋回すると360fにループするのでそれ用のclamp変数
+            var elevationAngleUpperLimit = 360f - elevationAngleLimit;
+            if (eulerX > elevationAngleLimit && eulerX < elevationAngleUpperLimit)
             {
-
-                var tripodRot = Quaternion.Euler(0f, InputVector.x * status.RollSpd, 0f);
-                var barrelRot = Quaternion.Euler(InputVector.y * status.RollSpd, 0f, 0f);
-                transform.rotation = tripodRot * transform.rotation;
-                barrel.localRotation = barrelRot * barrel.localRotation;
-                //Debug.Log($"x = {Mathf.Abs(barrel.localRotation.eulerAngles.x) }");
-                // 可動域制限を超えた場合クランプを掛ける
-                var eulerX = barrel.localRotation.eulerAngles.x;
-                if (eulerX > elevationAngleLimit && eulerX < 315f)
-                {
-                    Debug.Log($"barrel.localRotation.eulerAngles.x  = {barrel.localRotation.eulerAngles.x }");
-                    var xClamp = eulerX - elevationAngleLimit > elevationAngleLimit ? 315f : elevationAngleLimit;
-                    barrel.localRotation = Quaternion.Euler(new Vector3(xClamp, 0f, 0f));
-                }
+                /// ひとまず閾値を超えた時<see cref="elevationAngleLimit"/>を引いた値が<see cref="elevationAngleLimit"/>以上の場合は
+                /// 最低でも<see cref="elevationAngleLimit"/>*2以上あるので360側にループした回転値だと分かる.その為暫定でこの判定にしている
+                var xClamp = eulerX - elevationAngleLimit > elevationAngleLimit ? elevationAngleUpperLimit : elevationAngleLimit;
+                barrel.localRotation = Quaternion.Euler(new Vector3(xClamp, 0f, 0f));
             }
         }
 
         public void Fire()
         {
-            var bullet = Instantiate(status.Bullet, muzzleNode.position, Quaternion.identity);
             // TODO: bulletに初速を与えるか、bullet自体が勝手に動くかどっちかにして実装
-
+            var go = Instantiate(status.Bullet, muzzleNode.position + muzzleNode.forward, Quaternion.identity);
+            var bullet = go.GetComponent<Bullet>();
+            bullet.Init(muzzleNode.position);
         }
 
         /// <summary>前フレームのmouse position</summary>
@@ -102,8 +99,11 @@ namespace VRShooting
         float vertical = 0f;
 
         /// <summary>
-        /// <see cref="Input.mousePosition"/>の差分から<see cref="InputVector"/>の成分取得。
+        /// マウスのインプット取得処理.
         /// </summary>
+        /// <remarks>
+        /// <see cref="Input.mousePosition"/>の差分から<see cref="InputVector"/>の成分取得.
+        /// </remarks>
         void SetInputVector()
         {
             var mouseDiff = Input.mousePosition - mousePrevPos;
@@ -117,8 +117,11 @@ namespace VRShooting
             {
                 horizontal = vertical = 0f;
             }
-            //Debug.Log($"horizontal = {InputVector.x}, vertical = {InputVector.y}");
         }
+
+        /// <summary>
+        /// <see cref="InputVector"/>に制限を掛けるか,どう掛けるかを設定するenum
+        /// </summary>
         public enum Clamp
         {
             Both,

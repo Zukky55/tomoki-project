@@ -16,7 +16,7 @@ namespace VRShooting
         {
             updateManager = UpdateManager.Instance;
             updateManager.SubscribeUpdate(this);
-            Debug.Log($"shitayo{this.name}");
+            Debug.Log($"SubscribeUpdate {this.name}");
         }
         protected virtual void OnDestroy()
         {

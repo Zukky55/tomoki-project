@@ -16,13 +16,14 @@ namespace VRShooting
         {
             updateManager = UpdateManager.Instance;
             updateManager.SubscribeUpdate(this);
-            Debug.Log($"SubscribeUpdate {this.name}");
+            //Debug.Log($"SubscribeUpdate {name}");
         }
         protected virtual void OnDestroy()
         {
             if (updateManager)
             {
                 updateManager.UnsubscribeUpdate(this);
+                //Debug.Log($"UnsubscribeUpdate {name}");
             }
         }
         /// <summary>

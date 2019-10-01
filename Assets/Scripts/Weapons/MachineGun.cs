@@ -17,23 +17,32 @@ namespace VRShooting
         {
             get
             {
+                var vec = Vector3.zero;
                 switch (clamp)
                 {
                     case Clamp.Both:
-                        return new Vector3(horizontal, vertical, 0f);
+                        vec = new Vector3(horizontal, vertical, 0f);
+                        break;
                     case Clamp.Horizontal:
-                        return new Vector3(horizontal, 0f, 0f);
+                        vec = new Vector3(horizontal, 0f, 0f);
+                        break;
                     case Clamp.Vertical:
-                        return new Vector3(0f, vertical, 0f);
+                        vec = new Vector3(0f, vertical, 0f);
+                        break;
                     case Clamp.BothNormalized:
-                        return new Vector3(horizontal, vertical, 0f).normalized;
+                        vec = new Vector3(horizontal, vertical, 0f).normalized;
+                        break;
                     case Clamp.HorizontalNormalized:
-                        return new Vector3(horizontal, 0f, 0f).normalized;
+                        vec = new Vector3(horizontal, 0f, 0f).normalized;
+                        break;
                     case Clamp.VerticalNormalized:
-                        return new Vector3(0f, vertical, 0f).normalized;
+                        vec = new Vector3(0f, vertical, 0f).normalized;
+                        break;
                     default:
                         throw new ArgumentException();
                 }
+                vec *= status.RollSpd;
+                return vec;
             }
         }
 
@@ -56,7 +65,7 @@ namespace VRShooting
         {
             SetInputVector();
             Roll();
-            if (Input.GetMouseButton(0)) Fire();
+            Fire();
         }
 
         /// <summary>
@@ -65,11 +74,18 @@ namespace VRShooting
         private void Roll()
         {
             if (InputVector == Vector3.zero) return;
-
+#if false
             var tripodRot = Quaternion.Euler(0f, InputVector.x * status.RollSpd, 0f);
             var barrelRot = Quaternion.Euler(InputVector.y * status.RollSpd, 0f, 0f);
             transform.rotation = tripodRot * transform.rotation;
             barrel.localRotation = barrelRot * barrel.localRotation;
+#else
+            //var elevationRot = Quaternion.Euler(InputVector.y, 0f, 0f);
+            var azimuthRot = Quaternion.Euler(0, InputVector.x, 0f);
+            barrel.localRotation = azimuthRot * barrel.localRotation;
+            barrel.localRotation = Quaternion.AngleAxis(InputVector.y, barrel.right) * barrel.localRotation;
+
+#endif
             // 可動域制限を超えた場合クランプを掛ける
             var eulerX = barrel.localRotation.eulerAngles.x;
             // 仰角が無回転時0fの状態から手前に旋回すると360fにループするのでそれ用のclamp変数
@@ -79,16 +95,23 @@ namespace VRShooting
                 /// ひとまず閾値を超えた時<see cref="elevationAngleLimit"/>を引いた値が<see cref="elevationAngleLimit"/>以上の場合は
                 /// 最低でも<see cref="elevationAngleLimit"/>*2以上あるので360側にループした回転値だと分かる.その為暫定でこの判定にしている
                 var xClamp = eulerX - elevationAngleLimit > elevationAngleLimit ? elevationAngleUpperLimit : elevationAngleLimit;
-                barrel.localRotation = Quaternion.Euler(new Vector3(xClamp, 0f, 0f));
+                barrel.localRotation = Quaternion.Euler(new Vector3(xClamp, barrel.localRotation.eulerAngles.y, 0f));
             }
         }
 
+        /// <summary>銃弾発射してからの経過時間</summary>
+        float elapsedTimeSinseFire = 0f;
+        /// <summary>
+        /// 銃弾発射処理.
+        /// </summary>
         public void Fire()
         {
-            // TODO: bulletに初速を与えるか、bullet自体が勝手に動くかどっちかにして実装
-            var go = Instantiate(status.Bullet, muzzleNode.position + muzzleNode.forward, Quaternion.identity);
+            elapsedTimeSinseFire += Time.deltaTime;
+            if (!Input.GetMouseButton(0) || elapsedTimeSinseFire < status.FireInterval) return;
+            var go = Instantiate(status.BulletPrefab, muzzleNode.position + muzzleNode.forward, Quaternion.identity);
             var bullet = go.GetComponent<Bullet>();
-            bullet.Init(muzzleNode.position);
+            bullet.GiveInitialVelocity(muzzleNode.forward * status.BulletSpd);
+            elapsedTimeSinseFire = 0f;
         }
 
         /// <summary>前フレームのmouse position</summary>
@@ -97,7 +120,6 @@ namespace VRShooting
         float horizontal = 0f;
         /// <summary>Input Y axis.</summary>
         float vertical = 0f;
-
         /// <summary>
         /// マウスのインプット取得処理.
         /// </summary>

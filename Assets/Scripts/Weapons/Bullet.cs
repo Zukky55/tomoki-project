@@ -37,17 +37,20 @@ namespace VRShooting
         }
         public override void MUpdate()
         {
-            Debug.Log(transform.position.magnitude);
             if (transform.position.magnitude > 100)
             {
                 Destroy(gameObject);
             }
         }
 
-        public void Init(Vector3 spawnPos)
+        public void VoluntaryImpulse(Vector3 spawnPos)
         {
             var dir = transform.position - spawnPos;
-            velocity =dir.normalized *  status.Spd;
+            velocity = dir.normalized * status.Spd;
+        }
+        public void GiveInitialVelocity(Vector3 velocity)
+        {
+            this.velocity = velocity;
         }
     }
 }

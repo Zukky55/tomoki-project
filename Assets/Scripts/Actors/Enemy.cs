@@ -16,6 +16,14 @@ namespace VRShooting
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
         [SerializeField] [Header("敵のパラメーター")] EnemyStatus status;
+        [SerializeField] float myVar;
+
+        public float MyProperty
+        {
+            get { return myVar; }
+            set { myVar = value; }
+        }
+
 
         Animator animator;
         private Vector3 velocity;
@@ -25,13 +33,19 @@ namespace VRShooting
             base.Awake();
             animator = GetComponent<Animator>();
         }
+        public override void MUpdate()
+        {
+            MoveCheck();
+        }
+
+
         public void TakeDamage(int amount)
         {
             animator.SetTrigger(AnimTag.Damage.ToString());
             status.Hp -= amount;
             if (status.Hp <= 0)
             {
-                ToDie();
+                animator.SetTrigger(AnimTag.Death.ToString());
             }
         }
         public void Attack()
@@ -41,17 +55,23 @@ namespace VRShooting
 
         public void ToDie()
         {
-            animator.SetTrigger(AnimTag.Death.ToString());
-            var clipInfo = animator.GetNextAnimatorClipInfo(0);
-            Debug.Log(clipInfo.);
+            Destroy(gameObject);
         }
 
-        public override void MFixedUpdate()
+        Vector3 prevPos = Vector3.zero;
+        void MoveCheck()
         {
-            base.MFixedUpdate();
+            var diff = transform.position - prevPos;
+            if (diff == Vector3.zero)
+            {
+                animator.SetBool(AnimParam.IsMoving.ToString(), false);
+            }
+            else
+            {
+                animator.SetBool(AnimParam.IsMoving.ToString(), true);
+            }
+            prevPos = transform.position;
         }
-
-
     }
 
     public enum EnemyTag
@@ -66,5 +86,10 @@ namespace VRShooting
         Attack,
         Damage,
         Death,
+    }
+    public enum AnimParam
+    {
+        Speed,
+        IsMoving,
     }
 }

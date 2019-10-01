@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BulletStatus
   m_EditorClassIdentifier: 
   pow: 10
-  spd: 1
+  spd: 0.1

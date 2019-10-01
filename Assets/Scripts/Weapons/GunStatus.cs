@@ -14,14 +14,15 @@ namespace VRShooting
         public float FireInterval { get => fireInterval; set => fireInterval = value; }
         /// <summary>一発の攻撃力</summary>
         public int FirePow { get => firePow; set => firePow = value; }
-        /// <summary>一発の攻撃力</summary>
-        public GameObject Bullet { get => bullet; set => bullet = value; }
+        /// <summary>銃弾の速度</summary>
+        public float BulletSpd { get => bulletSpd; set => bulletSpd = value; }
+        /// <summary>銃弾のprefab</summary>
+        public GameObject BulletPrefab { get => bullet; set => bullet = value; }
 
         [SerializeField] [Header("回転速度")] float rollSpd;
-        //[SerializeField] [Header("仰角の回転速度")] float elevation;
-        //[SerializeField] [Header("方位角の回転速度")] float azimuth;
         [SerializeField] [Header("発射インターバル")] float fireInterval;
         [SerializeField] [Header("一発の攻撃力")] int firePow;
+        [SerializeField] [Header("銃弾の速度")] float bulletSpd;
         [SerializeField] [Header("銃弾のプレハブ")] GameObject bullet;
     }
 }

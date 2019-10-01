@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace VRShooting
 {
-    public interface IDamagable
+    public interface IDamagable : IEventSystemHandler
     {
         void TakeDamage(int amount);
     }

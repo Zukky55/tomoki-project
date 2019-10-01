@@ -22,6 +22,7 @@ namespace VRShooting
         {
             var bullet = Instantiate(status.Bullet, muzzle.position, Quaternion.identity);
             // TODO: bulletに初速を与えるか、bullet自体が勝手に動くかどっちかにして実装
+            
         }
 
         /// <summary>前フレームのmouse position</summary>
@@ -30,12 +31,12 @@ namespace VRShooting
         float horizontal = 0f;
         /// <summary>Input Y axis.</summary>
         float vertical = 0f;
+
         /// <summary>
-        /// Managed Update
+        /// <see cref="Input.mousePosition"/>の差分から<see cref="InputVector"/>の成分取得。
         /// </summary>
-        public override void ManagedUpdate()
+        void SetInputVector()
         {
-            // mouseの差分からInput成分取得
             var mouseDiff = Input.mousePosition - mousePrevPos;
             if (mouseDiff != Vector3.zero)
             {
@@ -47,8 +48,18 @@ namespace VRShooting
             {
                 horizontal = vertical = 0f;
             }
+            //Debug.Log($"horizontal = {horizontal}, vertical = {vertical}");
+        }
 
-            Debug.Log($"horizontal = {horizontal}, vertical = {vertical}");
+
+        /// <summary>
+        /// Managed Update
+        /// </summary>
+        public override void ManagedUpdate()
+        {
+            SetInputVector();
+
+
         }
     }
 }

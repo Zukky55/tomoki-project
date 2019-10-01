@@ -20,12 +20,10 @@ namespace VRShooting
 
         private void Start()
         {
-            this.velocity = transform.forward * status.Spd;
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log($"colicoli{collision.gameObject.name}");
             if (collision.gameObject.CompareTag(EnemyTag.Enemy.ToString()))
             {
                 var enemy = collision.gameObject.GetComponent<Enemy>();
@@ -49,6 +47,7 @@ namespace VRShooting
         public void Init(Vector3 spawnPos)
         {
             var dir = transform.position - spawnPos;
+            velocity =dir.normalized *  status.Spd;
         }
     }
 }

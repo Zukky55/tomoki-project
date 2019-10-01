@@ -18,6 +18,8 @@ namespace VRShooting
         public GameObject Bullet { get => bullet; set => bullet = value; }
 
         [SerializeField] [Header("回転速度")] float rollSpd;
+        //[SerializeField] [Header("仰角の回転速度")] float elevation;
+        //[SerializeField] [Header("方位角の回転速度")] float azimuth;
         [SerializeField] [Header("発射インターバル")] float fireInterval;
         [SerializeField] [Header("一発の攻撃力")] int firePow;
         [SerializeField] [Header("銃弾のプレハブ")] GameObject bullet;

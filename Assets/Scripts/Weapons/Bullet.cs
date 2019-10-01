@@ -27,11 +27,6 @@ namespace VRShooting
             this.velocity = velocity;
         }
 
-        public override void ManagedUpdate()
-        {
-            transform.position += velocity;
-        }
-
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag(EnemyTag.Enemy.ToString()))
@@ -41,5 +36,10 @@ namespace VRShooting
                 Destroy(gameObject);
             }
         }
+        public override void MFixedUpdate()
+        {
+            transform.position += velocity;
+        }
+        public override void MUpdate() { }
     }
 }

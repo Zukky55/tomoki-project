@@ -16,8 +16,22 @@ namespace VRShooting
         {
             updateManager = UpdateManager.Instance;
             updateManager.SubscribeUpdate(this);
+            Debug.Log($"shitayo{this.name}");
         }
-        protected virtual void OnDestroy() => updateManager.UnsubscribeUpdate(this);
-        public abstract void ManagedUpdate();
+        protected virtual void OnDestroy()
+        {
+            if (updateManager)
+            {
+                updateManager.UnsubscribeUpdate(this);
+            }
+        }
+        /// <summary>
+        /// 呼び出しを一元化して処理を早くしてあるUpdate関数
+        /// </summary>
+        public virtual void MUpdate() { }
+        /// <summary>
+        /// 呼び出しを一元化して処理を早くしてあるFixedUpdate関数
+        /// </summary>
+        public virtual void MFixedUpdate() { }
     }
 }

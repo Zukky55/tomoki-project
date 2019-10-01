@@ -15,6 +15,11 @@ namespace VRShooting
         /// <summary>
         /// Managed update method.
         /// </summary>
-        void ManagedUpdate();
+        void MUpdate();
+
+        /// <summary>
+        /// Managed fixed update method.
+        /// </summary>
+        void MFixedUpdate();
     }
 }

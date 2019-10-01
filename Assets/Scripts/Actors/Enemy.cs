@@ -15,26 +15,23 @@ namespace VRShooting
 
         Animator animator;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             animator = GetComponent<Animator>();
         }
-
-        public override void ManagedUpdate()
-        {
-
-        }
-
-
-
-                
         public void TakeDamage(int amount)
         {
             status.Hp -= amount;
-            if(status.Hp <= 0)
+            if (status.Hp <= 0)
             {
                 Destroy(this);
-            }
+            }
+        }
+
+        public override void MFixedUpdate()
+        {
+
         }
     }
 

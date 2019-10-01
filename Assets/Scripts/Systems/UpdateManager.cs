@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 namespace VRShooting
 {
     /// <summary>
-    /// <see cref="ManagedMono"/>の<see cref="ManagedMono.ManagedUpdate"/>を統合して呼び出すクラス。.
-    /// Class that unify and Call <see cref="ManagedMono.ManagedUpdate"/> of <see cref="ManagedMono"/>.
+    /// <see cref="ManagedMono"/>の<see cref="ManagedMono.MUpdate"/>を統合して呼び出すクラス。.
+    /// Class that unify and Call <see cref="ManagedMono.MUpdate"/> of <see cref="ManagedMono"/>.
     /// </summary>
     public class UpdateManager : MonoSingleton<UpdateManager>
     {
@@ -17,7 +17,17 @@ namespace VRShooting
         {
             foreach (var updatable in updatables)
             {
-                updatable.ManagedUpdate();
+                updatable.MUpdate();
+                updatable.MFixedUpdate();
+
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (var updatable in updatables)
+            {
+                //updatable.MFixedUpdate();
             }
         }
 

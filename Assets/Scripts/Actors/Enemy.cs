@@ -37,4 +37,10 @@ namespace VRShooting
             }
         }
     }
+
+    public enum EnemyTag
+    {
+        Enemy,
+        Bee,
+    }
 }

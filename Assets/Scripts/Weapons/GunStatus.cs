@@ -9,17 +9,17 @@ namespace VRShooting
     public class GunStatus : ScriptableObject
     {
         /// <summary>旋回速度</summary>
-        public float RollSPD { get => rollSPD; set => rollSPD = value; }
-        /// <summary>発射速度</summary>
-        public float FireSPD { get => fireSPD; set => fireSPD = value; }
+        public float RollSpd { get => rollSpd; set => rollSpd = value; }
+        /// <summary>発射インターバル</summary>
+        public float FireInterval { get => fireInterval; set => fireInterval = value; }
         /// <summary>一発の攻撃力</summary>
-        public float FirePOW { get => firePOW; set => firePOW = value; }
+        public int FirePow { get => firePow; set => firePow = value; }
         /// <summary>一発の攻撃力</summary>
         public GameObject Bullet { get => bullet; set => bullet = value; }
 
-        [SerializeField] [Header("回転速度")] float rollSPD;
-        [SerializeField] [Header("発射速度")] float fireSPD;
-        [SerializeField] [Header("一発の攻撃力")] float firePOW;
+        [SerializeField] [Header("回転速度")] float rollSpd;
+        [SerializeField] [Header("発射インターバル")] float fireInterval;
+        [SerializeField] [Header("一発の攻撃力")] int firePow;
         [SerializeField] [Header("銃弾のプレハブ")] GameObject bullet;
     }
 }

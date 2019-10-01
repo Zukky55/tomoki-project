@@ -78,7 +78,7 @@ namespace VRShooting
                 //Debug.Log($"x = {Mathf.Abs(barrel.localRotation.eulerAngles.x) }");
                 // 可動域制限を超えた場合クランプを掛ける
                 var eulerX = barrel.localRotation.eulerAngles.x;
-                if (Mathf.Abs(eulerX) > elevationAngleLimit)
+                if (eulerX > elevationAngleLimit && eulerX < 315f)
                 {
                     Debug.Log($"barrel.localRotation.eulerAngles.x  = {barrel.localRotation.eulerAngles.x }");
                     var xClamp = eulerX - elevationAngleLimit > elevationAngleLimit ? 315f : elevationAngleLimit;

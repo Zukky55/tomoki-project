@@ -13,9 +13,11 @@ namespace VRShooting
     {
         /// <summary>Status</summary>   
         public EnemyStatus Status => status;
+        public EnemyRole Role { get => role; set => role = value; }
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus status;
+        [SerializeField] protected EnemyRole role = EnemyRole.None;
 
         protected Animator animator;
         protected Vector3 velocity;
@@ -86,38 +88,40 @@ namespace VRShooting
     /// <summary>
     /// Enemies tag.
     /// </summary>
-    public enum Tag
-        {
-            Enemy,
-            Bee,
-        }
-        /// <summary>
-        /// Enemies animation tag
-        /// </summary>
-        public enum AnimTag
-        {
-            Idle,
-            Move,
-            Attack,
-            Damage,
-            Death,
-        }
-        /// <summary>
-        /// Enemies animation parameters
-        /// </summary>
-        public enum AnimParam
-        {
-            Speed,
-            IsMoving,
-        }
-        /// <summary>
-        /// 軍隊系の敵の役割
-        /// </summary>
-        public enum EnemyRole
-        {
-            /// <summary>ホスト</summary>
-            Host,
-            /// <summary>子供</summary>
-            Child,
-        }
+    public enum EnemyTag
+    {
+        Enemy,
+        Bee,
+    }
+    /// <summary>
+    /// Enemies animation tag
+    /// </summary>
+    public enum AnimTag
+    {
+        Idle,
+        Move,
+        Attack,
+        Damage,
+        Death,
+    }
+    /// <summary>
+    /// Enemies animation parameters
+    /// </summary>
+    public enum AnimParam
+    {
+        Speed,
+        IsMoving,
+    }
+    /// <summary>
+    /// 軍隊系の敵の役割
+    /// </summary>
+    public enum EnemyRole
+    {
+        /// <summary>役割の割当て無し</summary>
+        None,
+        /// <summary>ホスト</summary>
+        Host,
+        /// <summary>子供</summary>
+        Child,
+    }
 }

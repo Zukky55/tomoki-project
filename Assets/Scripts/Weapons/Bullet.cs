@@ -24,7 +24,7 @@ namespace VRShooting
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag(Tag.Enemy.ToString()))
+            if (collision.gameObject.CompareTag(EnemyTag.Enemy.ToString()))
             {
                 var enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(status.Pow);

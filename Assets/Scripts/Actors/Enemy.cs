@@ -15,31 +15,29 @@ namespace VRShooting
         public EnemyStatus Status => status;
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
-        [SerializeField] [Header("敵のパラメーター")] EnemyStatus status;
-        [SerializeField] float myVar;
+        [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus status;
 
-        public float MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
-
-
-        Animator animator;
-        private Vector3 velocity;
+        protected Animator animator;
+        protected Vector3 velocity;
 
         protected override void Awake()
         {
             base.Awake();
             animator = GetComponent<Animator>();
         }
+        /// <summary>
+        /// Managed Update
+        /// </summary>
         public override void MUpdate()
         {
             MoveCheck();
         }
 
-
-        public void TakeDamage(int amount)
+        /// <summary>
+        /// ダメージ受ける処理
+        /// </summary>
+        /// <param name="amount"></param>
+        public virtual void TakeDamage(int amount)
         {
             animator.SetTrigger(AnimTag.Damage.ToString());
             status.Hp -= amount;
@@ -48,18 +46,29 @@ namespace VRShooting
                 animator.SetTrigger(AnimTag.Death.ToString());
             }
         }
-        public void Attack()
+
+        /// <summary>
+        /// 攻撃処理
+        /// </summary>
+        public virtual void Attack()
         {
             animator.SetTrigger(AnimTag.Attack.ToString());
         }
 
-        public void ToDie()
+        /// <summary>
+        /// 死ぬ処理
+        /// </summary>
+        public virtual void ToDie()
         {
             Destroy(gameObject);
         }
 
+        /// <summary>前フレームの自分自身の座標</summary>
         Vector3 prevPos = Vector3.zero;
-        void MoveCheck()
+        /// <summary>
+        /// 座標差分を取って動いているかどうかの判定処理
+        /// </summary>
+        protected virtual void MoveCheck()
         {
             var diff = transform.position - prevPos;
             if (diff == Vector3.zero)
@@ -74,22 +83,41 @@ namespace VRShooting
         }
     }
 
-    public enum EnemyTag
-    {
-        Enemy,
-        Bee,
-    }
-    public enum AnimTag
-    {
-        Idle,
-        Move,
-        Attack,
-        Damage,
-        Death,
-    }
-    public enum AnimParam
-    {
-        Speed,
-        IsMoving,
-    }
+    /// <summary>
+    /// Enemies tag.
+    /// </summary>
+    public enum Tag
+        {
+            Enemy,
+            Bee,
+        }
+        /// <summary>
+        /// Enemies animation tag
+        /// </summary>
+        public enum AnimTag
+        {
+            Idle,
+            Move,
+            Attack,
+            Damage,
+            Death,
+        }
+        /// <summary>
+        /// Enemies animation parameters
+        /// </summary>
+        public enum AnimParam
+        {
+            Speed,
+            IsMoving,
+        }
+        /// <summary>
+        /// 軍隊系の敵の役割
+        /// </summary>
+        public enum EnemyRole
+        {
+            /// <summary>ホスト</summary>
+            Host,
+            /// <summary>子供</summary>
+            Child,
+        }
 }

@@ -21,5 +21,6 @@ namespace VRShooting
         [SerializeField] [Header("Power")] int pow;
         [SerializeField] [Header("Defense")] int def;
         [SerializeField] [Header("Speed")] float spd;
+
     }
 }

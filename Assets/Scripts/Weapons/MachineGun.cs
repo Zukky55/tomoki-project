@@ -47,7 +47,7 @@ namespace VRShooting
         }
 
         /// <summary>機関銃のパラメーター</summary>
-        [SerializeField] [Header("機関銃のパラメーター")] GunStatus status;
+        [SerializeField] [Header("機関銃のパラメーター")] GunStatus masterData;
         /// <summary>玉の射出座標</summary>
         [SerializeField] [Header("玉の射出座標")] Transform muzzleNode;
         /// <summary>Barrel's transform</summary>
@@ -56,7 +56,13 @@ namespace VRShooting
         [SerializeField] Clamp clamp;
         /// <summary><see cref="barrel"/>の仰角の回転制限値の閾値</summary>
         [SerializeField] float elevationAngleLimit = 45f;
+        GunStatus status;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            status = Instantiate(masterData);
+        }
 
         /// <summary>
         /// Managed Update

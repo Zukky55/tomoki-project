@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 7724866767853945536}
   - component: {fileID: 3961123468264776765}
   m_Layer: 0
-  m_Name: MachineGun
+  m_Name: MachineGun_ver1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7b230324486a04ebeb9b9f8a617058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: 016d3410f663062458b2de33469e4059, type: 2}
+  masterData: {fileID: 11400000, guid: 016d3410f663062458b2de33469e4059, type: 2}
   muzzleNode: {fileID: 2752718293518858397}
   barrel: {fileID: 3044883301738787224}
   clamp: 0

@@ -10,12 +10,13 @@ namespace VRShooting
     /// </summary>
     public class Bee : Enemy
     {
-        [SerializeField] PlayableTrack playableTrack;
-        [SerializeField] PlayableDirector playableDirector;
-        [SerializeField] PlayableAsset playableAsset;
+        [SerializeField] PlayableTrack pTrack;
+        [SerializeField] PlayableDirector pDirector;
+        [SerializeField] PlayableAsset pAsset;
 
         private void Start()
         {
+            pDirector.Play();
         }
         public override void MUpdate()
         {

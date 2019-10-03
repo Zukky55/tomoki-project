@@ -16,8 +16,9 @@ namespace VRShooting
         public EnemyRole Role { get => role; set => role = value; }
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
-        [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus status;
+        [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
         [SerializeField] protected EnemyRole role = EnemyRole.None;
+         protected EnemyStatus status;
 
         protected Animator animator;
         protected Vector3 velocity;
@@ -26,6 +27,7 @@ namespace VRShooting
         {
             base.Awake();
             animator = GetComponent<Animator>();
+            status = Instantiate(masterData);
         }
         /// <summary>
         /// Managed Update
@@ -41,11 +43,11 @@ namespace VRShooting
         /// <param name="amount"></param>
         public virtual void TakeDamage(int amount)
         {
-            animator.SetTrigger(AnimTag.Damage.ToString());
+            animator.SetTrigger(AnimParam.Damage.ToString());
             status.Hp -= amount;
             if (status.Hp <= 0)
             {
-                animator.SetTrigger(AnimTag.Death.ToString());
+                animator.SetTrigger(AnimParam.ToDeath.ToString());
             }
         }
 
@@ -54,13 +56,13 @@ namespace VRShooting
         /// </summary>
         public virtual void Attack()
         {
-            animator.SetTrigger(AnimTag.Attack.ToString());
+            animator.SetTrigger(AnimParam.Attack.ToString());
         }
 
         /// <summary>
         /// 死ぬ処理
         /// </summary>
-        public virtual void ToDie()
+        public virtual void ToDeath()
         {
             Destroy(gameObject);
         }
@@ -109,8 +111,10 @@ namespace VRShooting
     /// </summary>
     public enum AnimParam
     {
-        Speed,
         IsMoving,
+        Damage,
+        Attack,
+        ToDeath,
     }
     /// <summary>
     /// 軍隊系の敵の役割

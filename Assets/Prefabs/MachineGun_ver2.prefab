@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7b230324486a04ebeb9b9f8a617058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: 016d3410f663062458b2de33469e4059, type: 2}
+  masterData: {fileID: 11400000, guid: 016d3410f663062458b2de33469e4059, type: 2}
   muzzleNode: {fileID: 5718291333911322704}
   barrel: {fileID: 6884297691132731046}
   clamp: 0

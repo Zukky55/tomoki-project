@@ -30,7 +30,7 @@ namespace VRShooting
             if (other.gameObject.CompareTag(EnemyTag.Enemy.ToString()))
             {
                 var enemy = other.gameObject.GetComponent<Enemy>();
-                enemy.TakeDamage(masterData.Pow);
+                enemy.TakeDamage(status.Pow);
                 Debug.Log($"Hit the {enemy.name}. and HP is {enemy.Status.Hp}!!");
                 Destroy(gameObject);
             }
@@ -50,7 +50,7 @@ namespace VRShooting
         public void VoluntaryImpulse(Vector3 spawnPos)
         {
             var dir = transform.position - spawnPos;
-            velocity = dir.normalized * masterData.Spd;
+            velocity = dir.normalized * status.Spd;
         }
         public void GiveInitialVelocity(Vector3 velocity)
         {

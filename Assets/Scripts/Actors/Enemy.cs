@@ -11,23 +11,34 @@ namespace VRShooting
     /// </summary>
     public class Enemy : ManagedMono, IDamagable, IAttackable
     {
+
         /// <summary>Status</summary>   
         public EnemyStatus Status => status;
+        /// <summary>Role</summary>
         public EnemyRole Role { get => role; set => role = value; }
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
 
+        /// <summary>Transform of Player.</summary>
+        static protected Transform player;
+
+        /// <summary>Status of enemy.</summary>
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
         [SerializeField] protected EnemyRole role = EnemyRole.None;
+        /// <summary>進行方向から向きを取得する判断をする閾値</summary>
+        [SerializeField, Range(0f, 1f)] protected float moveCheckThreshold;
+        [SerializeField] SphereCollider playerDetectCollider;
         protected EnemyStatus status;
-
-
         protected Animator animator;
         protected Vector3 velocity;
 
         protected override void Awake()
         {
             base.Awake();
+            if (!player)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
             animator = GetComponent<Animator>();
             status = Instantiate(masterData);
         }
@@ -72,22 +83,32 @@ namespace VRShooting
         /// <summary>進行している方向の単位ベクトル</summary>
         protected Vector3 forwardDirection = Vector3.zero;
         /// <summary>前フレームの自分自身の座標</summary>
-        Vector3 prevPos = Vector3.zero;
+       protected Vector3 prevPos = Vector3.zero;
         /// <summary>
         /// 座標差分を取って動いているかどうかの判定処理
         /// </summary>
         protected virtual void MoveCheck()
         {
             var diff = transform.position - prevPos;
+            var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
+
             if (diff == Vector3.zero)
             {
+                isMoving = false;
+            }
+            else if (Vector3.Dot(diff, diff) > moveCheckThreshold)
+            {
                 forwardDirection = diff.normalized;
-                animator.SetBool(AnimParam.IsMoving.ToString(), false);
+                isMoving = false;
             }
             else
             {
-                animator.SetBool(AnimParam.IsMoving.ToString(), true);
+                forwardDirection = player.position - transform.position;
+                isMoving = true;
             }
+            /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
+            if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
+                animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
             prevPos = transform.position;
         }
     }

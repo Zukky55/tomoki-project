@@ -13,29 +13,47 @@ namespace VRShooting
         [SerializeField] PlayableTrack pTrack;
         [SerializeField] PlayableDirector pDirector;
         [SerializeField] PlayableAsset pAsset;
-        [SerializeField] Vector3 vec;
+
+        [SerializeField] ParticleSystem ps;
+        /// <summary>方向転換の線形補間係数</summary>
+        [SerializeField] float turnSpeed = .5f;
 
         private void Start()
         {
-            //pDirector.Play();
+
         }
 
-        private void OnEnable()
-        {
-        }
+
         public override void MUpdate()
         {
             base.MUpdate();
-            transform.forward = vec;
-            //if (forwardDirection != Vector3.zero)
-            //{
-            //    transform.forward = forwardDirection;
-            //}
+            var targetRot = Quaternion.LookRotation(forwardDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * turnSpeed);
         }
 
-        public void StopTrack()
+        protected override void MoveCheck()
         {
-            pDirector.Stop();
+            var diff = transform.position - prevPos;
+            var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
+
+            if (diff == Vector3.zero)
+            {
+                isMoving = false;
+            }
+            else if (Vector3.Dot(diff, diff) > moveCheckThreshold)
+            {
+                forwardDirection = diff.normalized;
+                isMoving = false;
+            }
+            else
+            {
+                forwardDirection = player.position - transform.position;
+                isMoving = true;
+            }
+            /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
+            if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
+                animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
+            prevPos = transform.position;
         }
     }
 }

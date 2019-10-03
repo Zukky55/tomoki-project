@@ -27,9 +27,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterData: {fileID: 11400000, guid: b18cb390441cb1e43b52a1d4e85779b3, type: 2}
   role: 1
+  moveCheckThreshold: 0.02
+  playerDetectCollider: {fileID: 0}
   pTrack: {fileID: 0}
   pDirector: {fileID: 0}
   pAsset: {fileID: 11400000, guid: d7ad7786d6d54694faf860bd5fd58cf9, type: 2}
+  ps: {fileID: 0}
+  turnSpeed: 5
 --- !u!1001 &1550007731771069995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45,6 +49,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 95333843763016992, guid: c717f817a496cf247a92b830b355a407,
         type: 3}
       propertyPath: m_Controller
@@ -52,15 +60,15 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2a2b5de0f532e084ba0cc1682bbf8ad1, type: 2}
     - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11
+      value: -4.27
       objectReference: {fileID: 0}
     - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.59
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_LocalRotation.x

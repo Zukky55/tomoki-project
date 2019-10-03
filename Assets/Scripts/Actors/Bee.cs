@@ -13,14 +13,29 @@ namespace VRShooting
         [SerializeField] PlayableTrack pTrack;
         [SerializeField] PlayableDirector pDirector;
         [SerializeField] PlayableAsset pAsset;
+        [SerializeField] Vector3 vec;
 
         private void Start()
         {
-            pDirector.Play();
+            //pDirector.Play();
+        }
+
+        private void OnEnable()
+        {
         }
         public override void MUpdate()
         {
             base.MUpdate();
+            transform.forward = vec;
+            //if (forwardDirection != Vector3.zero)
+            //{
+            //    transform.forward = forwardDirection;
+            //}
+        }
+
+        public void StopTrack()
+        {
+            pDirector.Stop();
         }
     }
 }

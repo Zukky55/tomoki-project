@@ -16,9 +16,11 @@ namespace VRShooting
         public EnemyRole Role { get => role; set => role = value; }
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
+
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
         [SerializeField] protected EnemyRole role = EnemyRole.None;
-         protected EnemyStatus status;
+        protected EnemyStatus status;
+
 
         protected Animator animator;
         protected Vector3 velocity;
@@ -67,6 +69,8 @@ namespace VRShooting
             Destroy(gameObject);
         }
 
+        /// <summary>進行している方向の単位ベクトル</summary>
+        protected Vector3 forwardDirection = Vector3.zero;
         /// <summary>前フレームの自分自身の座標</summary>
         Vector3 prevPos = Vector3.zero;
         /// <summary>
@@ -77,6 +81,7 @@ namespace VRShooting
             var diff = transform.position - prevPos;
             if (diff == Vector3.zero)
             {
+                forwardDirection = diff.normalized;
                 animator.SetBool(AnimParam.IsMoving.ToString(), false);
             }
             else

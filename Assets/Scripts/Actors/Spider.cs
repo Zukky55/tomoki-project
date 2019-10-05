@@ -5,14 +5,20 @@ using UnityEngine.AI;
 
 namespace VRShooting
 {
-    public class Spider : ManagedMono
+    public class Spider : Enemy
     {
         NavMeshAgent agent;
+
 
         protected override void Awake()
         {
             base.Awake();
             agent = GetComponent<NavMeshAgent>();
+        }
+
+        private void Start()
+        {
+            
         }
 
         public override void MUpdate()

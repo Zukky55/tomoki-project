@@ -80,18 +80,11 @@ namespace VRShooting
         private void Roll()
         {
             if (InputVector == Vector3.zero) return;
-#if false
-            var tripodRot = Quaternion.Euler(0f, InputVector.x * status.RollSpd, 0f);
-            var barrelRot = Quaternion.Euler(InputVector.y * status.RollSpd, 0f, 0f);
-            transform.rotation = tripodRot * transform.rotation;
-            barrel.localRotation = barrelRot * barrel.localRotation;
-#else
-            //var elevationRot = Quaternion.Euler(InputVector.y, 0f, 0f);
+
             var azimuthRot = Quaternion.Euler(0, InputVector.x, 0f);
             barrel.localRotation = azimuthRot * barrel.localRotation;
             barrel.localRotation = Quaternion.AngleAxis(InputVector.y, barrel.right) * barrel.localRotation;
 
-#endif
             // 可動域制限を超えた場合クランプを掛ける
             var eulerX = barrel.localRotation.eulerAngles.x;
             // 仰角が無回転時0fの状態から手前に旋回すると360fにループするのでそれ用のclamp変数

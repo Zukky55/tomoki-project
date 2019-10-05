@@ -37,7 +37,8 @@ namespace VRShooting
             base.Awake();
             if (!player)
             {
-                player = GameObject.FindGameObjectWithTag("Player").transform;
+                //player = GameObject.FindGameObjectWithTag("Player").transform;
+                player = Camera.main.transform;
             }
             animator = GetComponent<Animator>();
             status = Instantiate(masterData);
@@ -83,7 +84,7 @@ namespace VRShooting
         /// <summary>進行している方向の単位ベクトル</summary>
         protected Vector3 forwardDirection = Vector3.zero;
         /// <summary>前フレームの自分自身の座標</summary>
-       protected Vector3 prevPos = Vector3.zero;
+        protected Vector3 prevPos = Vector3.zero;
         /// <summary>
         /// 座標差分を取って動いているかどうかの判定処理
         /// </summary>

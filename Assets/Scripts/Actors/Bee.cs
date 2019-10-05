@@ -18,12 +18,6 @@ namespace VRShooting
         /// <summary>方向転換の線形補間係数</summary>
         [SerializeField] float turnSpeed = .5f;
 
-        private void Start()
-        {
-
-        }
-
-
         public override void MUpdate()
         {
             base.MUpdate();

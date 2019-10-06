@@ -117,6 +117,7 @@ namespace VRShooting
     {
         Enemy,
         Bee,
+        Spider,
     }
     /// <summary>
     /// Enemies animation tag

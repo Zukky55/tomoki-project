@@ -7,6 +7,7 @@ namespace VRShooting
 {
     public class Spider : Enemy
     {
+
         NavMeshAgent agent;
 
 

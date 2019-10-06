@@ -568,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &272810131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1051519867}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1920111872075466359}
+        m_MethodName: OnShotStartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1051519867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4169,6 +4180,18 @@ PrefabInstance:
       objectReference: {fileID: 757796495181941549}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdff85346d832d14e828659a4c12efdd, type: 3}
+--- !u!114 &1920111872075466359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1706954669, guid: bdff85346d832d14e828659a4c12efdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920111872075466358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d531d08021d7a47994f69cdd6e190a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5170984952003412017
 PrefabInstance:
   m_ObjectHideFlags: 0

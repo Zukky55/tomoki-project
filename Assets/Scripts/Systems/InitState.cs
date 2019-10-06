@@ -9,15 +9,20 @@ namespace VRShooting
         [SerializeField] Canvas StartGameCanvas;
         protected override void OnGameStateEnter(StageManager.GameState wave)
         {
-            throw new System.NotImplementedException();
+            // DIsplay start canvases.
         }
         protected override void OnGameStateExecute(StageManager.GameState wave)
         {
-            throw new System.NotImplementedException();
+            // When shot start button then Starting First wave.
         }
         protected override void OnGameStateExit(StageManager.GameState wave)
         {
-            throw new System.NotImplementedException();
+            // Close Start canvases.
+        }
+
+        public void OnShotStartButton()
+        {
+            stageManager.InvokeState(StageManager.GameState.FirstWave);
         }
     }
 }

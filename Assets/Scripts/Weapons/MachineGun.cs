@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace VRShooting
 {
@@ -105,6 +106,19 @@ namespace VRShooting
         /// </summary>
         public void Fire()
         {
+            // shot時rayを飛ばして
+            var ray = Camera.main.ScreenPointToRay(barrel.forward);
+            var hit = new RaycastHit();
+            if (Physics.Raycast(ray, out hit))
+            {
+                Button button;
+                if (hit.collider.TryGetComponent<Button>(out button))
+                {
+                    button.onClick.Invoke();
+                    button.interactable = false;
+                }
+            }
+
             elapsedTimeSinseFire += Time.deltaTime;
             if (!Input.GetMouseButton(0) || elapsedTimeSinseFire < status.FireInterval) return;
             var go = Instantiate(status.BulletPrefab, muzzleNode.position + muzzleNode.forward, Quaternion.identity);

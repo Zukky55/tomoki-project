@@ -10,6 +10,7 @@ namespace VRShooting
         NavMeshAgent agent;
 
 
+
         protected override void Awake()
         {
             base.Awake();
@@ -18,20 +19,20 @@ namespace VRShooting
 
         private void Start()
         {
-            
+            agent.SetDestination(player.position);
         }
 
         public override void MUpdate()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    agent.SetDestination(hit.point);
-                }
-            }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    RaycastHit hit;
+            //    if (Physics.Raycast(ray, out hit))
+            //    {
+            //        agent.SetDestination(hit.point);
+            //    }
+            //}
         }
     }
 }

@@ -14,8 +14,6 @@ namespace VRShooting
 
         /// <summary>Status</summary>   
         public EnemyStatus Status => status;
-        /// <summary>Role</summary>
-        public EnemyRole Role { get => role; set => role = value; }
         /// <summary>Velocity</summary>
         public Vector3 Velocity { get => velocity; set => velocity = value; }
 
@@ -24,10 +22,8 @@ namespace VRShooting
 
         /// <summary>Status of enemy.</summary>
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
-        [SerializeField] protected EnemyRole role = EnemyRole.None;
         /// <summary>進行方向から向きを取得する判断をする閾値</summary>
         [SerializeField, Range(0f, 1f)] protected float moveCheckThreshold;
-        [SerializeField] SphereCollider playerDetectCollider;
         protected EnemyStatus status;
         protected Animator animator;
         protected Vector3 velocity;
@@ -142,17 +138,5 @@ namespace VRShooting
         Damage,
         Attack,
         ToDeath,
-    }
-    /// <summary>
-    /// 軍隊系の敵の役割
-    /// </summary>
-    public enum EnemyRole
-    {
-        /// <summary>役割の割当て無し</summary>
-        None,
-        /// <summary>ホスト</summary>
-        Host,
-        /// <summary>子供</summary>
-        Child,
     }
 }

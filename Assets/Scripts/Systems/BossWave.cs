@@ -13,7 +13,6 @@ namespace VRShooting
         {
             if (wave != targetState) return;
         }
-
         protected override void OnGameStateExit(StageManager.GameState wave)
         {
             if (wave != targetState) return;

@@ -16,4 +16,4 @@ MonoBehaviour:
   pow: 0
   def: 0
   spd: 0
-  aroundRange: 1
+  aroundRange: 10

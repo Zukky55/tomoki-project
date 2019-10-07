@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 namespace VRShooting
 {
@@ -21,12 +20,12 @@ namespace VRShooting
 
         private void Start()
         {
-            var rnd = Random.onUnitSphere;
-            var target = new Vector3(rnd.x, 0f, rnd.z) * status.AroundRange + player.position;
+            var onUnitCircle = CustomMath.onUnitCircle;
+            var target = new Vector3(onUnitCircle.x, 0f, onUnitCircle.y) * status.AroundRange + player.position;
             var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             go.transform.position = target;
             go.transform.localScale *= .2f;
-            //agent.SetDestination(target);
+            agent.SetDestination(target);
         }
 
         public override void MUpdate()
@@ -40,6 +39,17 @@ namespace VRShooting
             //        agent.SetDestination(hit.point);
             //    }
             //}
+        }
+
+        public override void TakeDamage(int amount)
+        {
+            animator.SetTrigger(AnimParam.Damage.ToString());
+            status.Hp -= amount;
+            if (status.Hp <= 0)
+            {
+                agent.isStopped = true;
+                animator.SetTrigger(AnimParam.ToDeath.ToString());
+            }
         }
     }
 }

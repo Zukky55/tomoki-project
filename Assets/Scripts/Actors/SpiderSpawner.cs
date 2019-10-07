@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace VRShooting
 {
@@ -21,7 +22,7 @@ namespace VRShooting
             }
             for (int i = 0; i < amount;)
             {
-                var rndValue = UnityEngine.Random.Range(0, spawnNodes.Count);
+                var rndValue = Random.Range(0, spawnNodes.Count);
                 if (!indexes.Contains(rndValue))
                 {
                     indexes.Add(rndValue);
@@ -38,5 +39,6 @@ namespace VRShooting
         }
 
         public List<Spider> Spawn(int amount) => Spawn(spider, amount);
+
     }
 }

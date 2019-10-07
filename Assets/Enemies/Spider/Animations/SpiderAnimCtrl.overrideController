@@ -7,7 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SpiderAnimCtrl
-  m_Controller: {fileID: 9100000, guid: 2a2b5de0f532e084ba0cc1682bbf8ad1, type: 2}
+  m_Controller: {fileID: 9100000, guid: d180f6ae1fbe77c4fbb8e08d12facb9c, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 12d73ebde2b144af28adbd3ae7e13630, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: f1fcc5d30a4b23a44bde4dea93245d2d, type: 2}

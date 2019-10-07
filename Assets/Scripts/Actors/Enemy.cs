@@ -11,7 +11,6 @@ namespace VRShooting
     /// </summary>
     public class Enemy : ManagedMono, IDamagable, IAttackable
     {
-
         /// <summary>Status</summary>   
         public EnemyStatus Status => status;
         /// <summary>Velocity</summary>

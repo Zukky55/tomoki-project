@@ -106,16 +106,19 @@ namespace VRShooting
         /// </summary>
         public void Fire()
         {
-            // shot時rayを飛ばして
-            var ray = Camera.main.ScreenPointToRay(barrel.forward);
-            var hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit))
+            // InitStateのstateの時だけ撃ったベクトルにRayを飛ばしてButtonを押す。
+            if (StageManager.Instance.CurrentState == StageManager.GameState.InitState)
             {
-                Button button;
-                if (hit.collider.TryGetComponent<Button>(out button))
+                var ray = Camera.main.ScreenPointToRay(barrel.forward);
+                var hit = new RaycastHit();
+                if (Physics.Raycast(ray, out hit))
                 {
-                    button.onClick.Invoke();
-                    button.interactable = false;
+                    Button button;
+                    if (hit.collider.TryGetComponent<Button>(out button))
+                    {
+                        button.onClick.Invoke();
+                        button.interactable = false;
+                    }
                 }
             }
 

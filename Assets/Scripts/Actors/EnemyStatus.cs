@@ -16,11 +16,14 @@ namespace VRShooting
         public int Def { get => def; set => def = value; }
         /// <summary>speed</summary>
         public float Spd { get => spd; set => spd = value; }
+        public float AroundRange{ get => aroundRange; set => aroundRange = value; }
+        
 
         [SerializeField] [Header("Hit Point")] int hp;
         [SerializeField] [Header("Power")] int pow;
         [SerializeField] [Header("Defense")] int def;
         [SerializeField] [Header("Speed")] float spd;
+        [SerializeField] [Header("Coefficient of AroundRange")] float aroundRange;
 
     }
 }

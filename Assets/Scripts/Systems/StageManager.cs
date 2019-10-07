@@ -47,13 +47,6 @@ namespace VRShooting
         [SerializeField] GameState firstState = GameState.InitState;
 
         GameState currentState = GameState.None;
-        SpiderSpawner spiderSpawner;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            spiderSpawner = GetComponent<SpiderSpawner>();
-        }
 
         private void Start()
         {

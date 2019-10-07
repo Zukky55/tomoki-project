@@ -9,6 +9,7 @@ namespace VRShooting
     public class SpiderSpawner : MonoBehaviour
     {
         [SerializeField] List<SpawnNode> spawnNodes;
+        [SerializeField] GameObject spider;
 
         public List<Spider> Spawn(GameObject enemyPrefab, int amount)
         {
@@ -35,5 +36,7 @@ namespace VRShooting
             }
             return spawnedEnemies;
         }
+
+        public List<Spider> Spawn(int amount) => Spawn(spider, amount);
     }
 }

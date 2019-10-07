@@ -20,6 +20,7 @@ namespace VRShooting
         /// <summary>Transform of Player.</summary>
         static protected Transform player;
 
+
         /// <summary>Status of enemy.</summary>
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
         /// <summary>進行方向から向きを取得する判断をする閾値</summary>

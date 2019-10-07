@@ -16,6 +16,7 @@ namespace VRShooting
         public Vector3 Velocity { get => velocity; set => velocity = value; }
 
         [SerializeField] BulletStatus masterData;
+        [SerializeField] GameObject seObj;
         BulletStatus status;
         private Vector3 velocity;
 
@@ -23,6 +24,7 @@ namespace VRShooting
         {
             base.Awake();
             status = Instantiate(masterData);
+            Instantiate(seObj, transform.position, Quaternion.identity);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -32,6 +34,10 @@ namespace VRShooting
                 var enemy = other.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(status.Pow);
                 Debug.Log($"Hit the {enemy.name}. and HP is {enemy.Status.Hp}!!");
+                Destroy(gameObject);
+            }
+            else
+            {
                 Destroy(gameObject);
             }
         }

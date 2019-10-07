@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &4506808109423529684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185974249569454997}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 2.08, z: 5}
+  m_Center: {x: 0, y: 1.13, z: 0}
 --- !u!195 &660915832422260598
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9,8 +22,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 8185974249569454997}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 2.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -34,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5bfd45ac586154c9bac16047a0db13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterData: {fileID: 11400000, guid: 44463732c53eb834ba5bf6dba82740a5, type: 2}
+  moveCheckThreshold: 0
 --- !u!1001 &8185974249569422481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -63,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.3
+      value: 43.71
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -324,6 +339,15 @@ PrefabInstance:
     - target: {fileID: 100066, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 7ac617e35c48a5a479cbeec3cb05b6ca,
+        type: 2}
+    - target: {fileID: 9500000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}

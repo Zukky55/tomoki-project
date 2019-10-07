@@ -8,7 +8,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549523932491572461}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.36
@@ -26,9 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterData: {fileID: 11400000, guid: b18cb390441cb1e43b52a1d4e85779b3, type: 2}
-  role: 1
   moveCheckThreshold: 0.02
-  playerDetectCollider: {fileID: 0}
   pTrack: {fileID: 0}
   pDirector: {fileID: 0}
   pAsset: {fileID: 11400000, guid: d7ad7786d6d54694faf860bd5fd58cf9, type: 2}
@@ -46,22 +44,23 @@ PrefabInstance:
       value: Bee
       objectReference: {fileID: 0}
     - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 95333843763016992, guid: c717f817a496cf247a92b830b355a407,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2a2b5de0f532e084ba0cc1682bbf8ad1, type: 2}
+    - target: {fileID: 95333843763016992, guid: c717f817a496cf247a92b830b355a407,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.27

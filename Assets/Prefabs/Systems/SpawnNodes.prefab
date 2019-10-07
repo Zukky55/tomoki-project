@@ -666,6 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757796495545609834}
+  - component: {fileID: 101850009}
   m_Layer: 0
   m_Name: SpawnNodes
   m_TagString: Untagged
@@ -711,6 +712,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101850009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757796495545609833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e651c9ba41f934c89555bf21d79196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnNodes:
+  - {fileID: 526349906374967803}
+  - {fileID: 6122430212725896127}
+  - {fileID: 5747606156464430274}
+  - {fileID: 945083626241469978}
+  - {fileID: 5977259937256204206}
+  - {fileID: 1967058865784475920}
+  - {fileID: 1879768832812657200}
+  - {fileID: 4269077458740206706}
+  - {fileID: 3375020746963366716}
+  - {fileID: 1250315753448269848}
+  - {fileID: 4056452802644567218}
+  - {fileID: 4378438837679059524}
+  - {fileID: 2691104251352426723}
+  - {fileID: 6752572964019936501}
+  - {fileID: 7503230319114733935}
+  spider: {fileID: 8185974249569454997, guid: 98e2d96348bed66449d778bb6da34a15, type: 3}
 --- !u!1 &757796495583104350
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ namespace VRShooting
         {
             // 蜂の群れのtimelineを複数パターン作って、ランダムに活かせるかもしくはその数文順番に活かせる
             if (wave != targetState) return;
+            Debug.Log($"FirstWaveきた");
             spiderSpawner.Spawn(amount);
         }
         protected override void OnGameStateExecute(StageManager.GameState wave)
@@ -23,5 +24,9 @@ namespace VRShooting
         {
             if (wave != targetState) return;
         }
+
+
+
+
     }
 }

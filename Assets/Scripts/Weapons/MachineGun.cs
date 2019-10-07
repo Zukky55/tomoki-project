@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace VRShooting
@@ -53,6 +55,8 @@ namespace VRShooting
         [SerializeField] [Header("玉の射出座標")] Transform muzzleNode;
         /// <summary>Barrel's transform</summary>
         [SerializeField] Transform barrel;
+        /// <summary>Transform of CrossHair</summary>
+        [SerializeField] Transform crossHair;
         /// <summary>Clamp of <see cref="InputVector"/></summary>
         [SerializeField] Clamp clamp;
         /// <summary><see cref="barrel"/>の仰角の回転制限値の閾値</summary>
@@ -106,28 +110,40 @@ namespace VRShooting
         /// </summary>
         public void Fire()
         {
-            // InitStateのstateの時だけ撃ったベクトルにRayを飛ばしてButtonを押す。
-            if (StageManager.Instance.CurrentState == StageManager.GameState.InitState)
-            {
-                var ray = Camera.main.ScreenPointToRay(barrel.forward);
-                var hit = new RaycastHit();
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Button button;
-                    if (hit.collider.TryGetComponent<Button>(out button))
-                    {
-                        button.onClick.Invoke();
-                        button.interactable = false;
-                    }
-                }
-            }
-
             elapsedTimeSinseFire += Time.deltaTime;
             if (!Input.GetMouseButton(0) || elapsedTimeSinseFire < status.FireInterval) return;
+
+            // InitStateのstateの時だけ撃ったベクトルにRayを飛ばしてButtonを押す。
+            if (StageManager.Instance.CurrentState == StageManager.GameState.InitState) PerformButtonRayCastingAndProcessing();
+
             var go = Instantiate(status.BulletPrefab, muzzleNode.position + muzzleNode.forward, Quaternion.identity);
             var bullet = go.GetComponent<Bullet>();
             bullet.GiveInitialVelocity(muzzleNode.forward * status.BulletSpd);
             elapsedTimeSinseFire = 0f;
+        }
+
+        /// <summary>
+        /// ボタンのraycastをし、見つかった場合はonClick処理を実行する
+        /// </summary>
+        void PerformButtonRayCastingAndProcessing()
+        {
+            var viewportOfCrossHair = Camera.main.WorldToScreenPoint(crossHair.position);
+            var pointerEventData = new PointerEventData(EventSystem.current)
+            {
+                position = viewportOfCrossHair
+            };
+            var raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+            if (raycastResults.Any())
+            {
+                RaycastResult detectedUIOfButton = raycastResults.FirstOrDefault(ui => ui.gameObject.CompareTag("Button"));
+                if (detectedUIOfButton.gameObject)
+                {
+                    var button = detectedUIOfButton.gameObject.GetComponent<Button>();
+                    button.onClick.Invoke();
+                    button.gameObject.SetActive(false);
+                }
+            }
         }
 
         /// <summary>前フレームのmouse position</summary>

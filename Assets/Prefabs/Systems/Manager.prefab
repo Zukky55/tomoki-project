@@ -65,6 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveTime: 0
   targetState: 2
+  spiderSpawner: {fileID: 0}
+  amount: 10
+  interval: 0
 --- !u!114 &1706954667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +134,6 @@ GameObject:
   m_Component:
   - component: {fileID: 507913594576581839}
   - component: {fileID: 1861900846429404790}
-  - component: {fileID: 1920111872075466360}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -169,32 +171,4 @@ MonoBehaviour:
   beeFlock: {fileID: 213034793693881630, guid: d10a16f9344ac3e428315b0051e69da6, type: 3}
   spider: {fileID: 8185974249569454997, guid: 98e2d96348bed66449d778bb6da34a15, type: 3}
   boss: {fileID: 8185974249569454997, guid: 98e2d96348bed66449d778bb6da34a15, type: 3}
-  firstState: 0
---- !u!114 &1920111872075466360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8820540473094163668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e651c9ba41f934c89555bf21d79196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  firstState: 1

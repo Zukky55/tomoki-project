@@ -8,6 +8,9 @@ namespace VRShooting
     {
         [SerializeField] Transform barrel;
 
+        /// <summary>
+        /// コントローラー完成したら消す
+        /// </summary>
         public override void MFixedUpdate()
         {
             var diff = barrel.localRotation.eulerAngles.y - transform.localRotation.eulerAngles.y;

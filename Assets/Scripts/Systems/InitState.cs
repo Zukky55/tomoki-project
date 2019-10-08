@@ -9,25 +9,24 @@ namespace VRShooting
         [SerializeField] Canvas StartGameCanvas;
 
 
-        protected override void OnGameStateEnter(StageManager.GameState wave)
+        public override void Enter()
         {
-            if (wave != targetState) return;
             // DIsplay start canvases.
         }
-        protected override void OnGameStateExecute(StageManager.GameState wave)
+
+        public override void Execute()
         {
-            if (wave != targetState) return;
             // When shot start button then Starting First wave.
         }
-        protected override void OnGameStateExit(StageManager.GameState wave)
+
+        public override void Exit()
         {
-            if (wave != targetState) return;
             // Close Start canvases.
         }
 
         public void OnShotStartButton()
         {
-            stageManager.InvokeState(StageManager.GameState.FirstWave);
+            stageManager.SetState(StageManager.GameState.FirstWave);
         }
     }
 }

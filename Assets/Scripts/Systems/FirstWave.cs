@@ -1,32 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.Playables;
 using System.Collections;
+using System.Threading;
+
 
 namespace VRShooting
 {
     public class FirstWave : StateBehaviour
     {
-        [SerializeField] SpiderSpawner spiderSpawner;
-        [SerializeField] int amount;
-        [SerializeField] float interval;
-        protected override void OnGameStateEnter(StageManager.GameState wave)
+        [SerializeField] PlayableDirector BeesDirector;
+        public async override void Enter()
         {
-            // 蜂の群れのtimelineを複数パターン作って、ランダムに活かせるかもしくはその数文順番に活かせる
-            if (wave != targetState) return;
-            Debug.Log($"FirstWaveきた");
-            spiderSpawner.Spawn(amount);
-        }
-        protected override void OnGameStateExecute(StageManager.GameState wave)
-        {
-            if (wave != targetState) return;
-
-        }
-        protected override void OnGameStateExit(StageManager.GameState wave)
-        {
-            if (wave != targetState) return;
+            BeesDirector.Play();
+            Debug.Log($"ManagedThreadId = {Thread.CurrentThread.ManagedThreadId}");
+            await TransitionWaveAsync(StageManager.GameState.SecondWave);
         }
 
+        public override void Execute()
+        {
+        }
 
-
-
+        public override void Exit()
+        {
+        }
     }
 }

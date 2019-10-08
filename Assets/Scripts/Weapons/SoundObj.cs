@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundObj : MonoBehaviour
+namespace VRShooting
 {
-    private void Start()
+    public class SoundObj : MonoBehaviour
     {
-        var audio = GetComponent<AudioSource>();
-        audio.Play();
-        Destroy(gameObject, audio.clip.length);
+        private void Start()
+        {
+            var audio = GetComponent<AudioSource>();
+            audio.Play();
+            Destroy(gameObject, audio.clip.length);
+        }
     }
 }

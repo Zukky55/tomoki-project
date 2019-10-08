@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,42 +32,52 @@ namespace VRShooting
         }
         #endregion
 
-        public delegate void GameStateDel(GameState wave);
-        public event GameStateDel GameStateEnter = v => Debug.Log($"Called {v} state.");
-        public event GameStateDel GameStateExecute = v => { };
-        public event GameStateDel GameStateExit = v => Debug.Log($"Exit {v} state.");
+        public delegate void GameStateDel(GameState gameState);
+        public event GameStateDel OnGameStateEnter = gs => { };
 
-        public GameState CurrentState => currentState;
+
         public GameObject BeeFlock => beeFlock;
         public GameObject Spider => spider;
         public GameObject Boss => boss;
+        public GameState CurrentState => currentState.StateId;
 
+        [SerializeField] GameState firstState = GameState.InitState;
         [SerializeField] GameObject beeFlock;
         [SerializeField] GameObject spider;
         [SerializeField] GameObject boss;
-        [SerializeField] GameState firstState = GameState.InitState;
+        [SerializeField] GameObject individualState;
 
-        GameState currentState = GameState.None;
+        StateBehaviour currentState;
+        StateBehaviour[] gameStates;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            gameStates = individualState.GetComponents<StateBehaviour>();
+            Debug.Log($"gameStates.Count() = {gameStates.Count()}");
+        }
 
         private void Start()
         {
-            InvokeState(firstState);
+            SetState(firstState);
         }
 
         public override void MUpdate()
         {
-            GameStateExecute?.Invoke(currentState);
+            currentState?.Execute();
         }
 
         /// <summary>
         /// 指定Stateに遷移させる.
         /// </summary>
         /// <param name="nextState"></param>
-        public void InvokeState(GameState nextState)
+        public void SetState(GameState nextState)
         {
-            GameStateExit?.Invoke(currentState);
-            currentState = nextState;
-            GameStateEnter?.Invoke(currentState);
+            if (nextState.Equals(GameState.InitState)) currentState?.Exit();
+            currentState = gameStates.First(gs => gs.StateId == nextState);
+            currentState.Enter();
+            OnGameStateEnter?.Invoke(currentState.StateId);
+            Debug.Log($"currentState = {currentState.StateId}");
         }
 
         public enum GameState

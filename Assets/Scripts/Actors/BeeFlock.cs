@@ -23,7 +23,7 @@ namespace VRShooting
         }
         private void Start()
         {
-            StartCoroutine(EmitTheBees());
+            //StartCoroutine(EmitTheBees());
         }
 
         /// <summary>生成した蜂の群れ</summary>
@@ -34,7 +34,7 @@ namespace VRShooting
         /// Particleを<see cref="populationOfFlock"/>分emitし,その数分<see cref="Bee"/>を生成する。
         /// </summary>
         /// <returns>Emissionが終わって<see cref="ParticleSystem.particleCount"/>に反映される迄の待機時間</returns>
-        IEnumerator EmitTheBees()
+       public IEnumerator EmitTheBees()
         {
             flockingPS.emission.SetBurst(0, new ParticleSystem.Burst(0, populationOfFlock, populationOfFlock, 1, 0.01f));
             flockingPS.Play();
@@ -44,6 +44,7 @@ namespace VRShooting
             flockingPS.GetParticles(particles);
             for (int index = 0; index < particles.Length; index++)
             {
+                // vector3に100入れてるのは,world coordinates原点に出すと1フレームだけ画面に映ってしまうから
                 bees[index] = Instantiate(beePrefab, new Vector3(100,100,100), transform.rotation, transform);
                 bees[index].transform.localPosition = particles[index].position;
             }

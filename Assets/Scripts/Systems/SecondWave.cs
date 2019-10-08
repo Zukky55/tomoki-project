@@ -5,18 +5,25 @@ namespace VRShooting
 {
     public class SecondWave : StateBehaviour
     {
-        protected override void OnGameStateEnter(StageManager.GameState wave)
+        [SerializeField] SpiderSpawner spiderSpawner;
+        [SerializeField] int amount;
+        [SerializeField] float interval;
+
+        public async override void Enter()
         {
-            if (wave != targetState) return;
-        }
-        protected override void OnGameStateExecute(StageManager.GameState wave)
-        {
-            if (wave != targetState) return;
+            // 蜂の群れのtimelineを複数パターン作って、ランダムに活かせるかもしくはその数文順番に活かせる
+            Debug.Log($"FirstWaveきた");
+            spiderSpawner.Spawn(amount);
+            await TransitionWaveAsync(StageManager.GameState.SecondWave);
         }
 
-        protected override void OnGameStateExit(StageManager.GameState wave)
+
+        public override void Execute()
         {
-            if (wave != targetState) return;
+        }
+
+        public override void Exit()
+        {
         }
     }
 }

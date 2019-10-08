@@ -5,18 +5,16 @@ namespace VRShooting
 {
     public class GameOver : StateBehaviour
     {
-        protected override void OnGameStateEnter(StageManager.GameState wave)
+        public override void Enter()
         {
-            if (wave != targetState) return;
-        }
-        protected override void OnGameStateExecute(StageManager.GameState wave)
-        {
-            if (wave != targetState) return;
         }
 
-        protected override void OnGameStateExit(StageManager.GameState wave)
+        public override void Execute()
         {
-            if (wave != targetState) return;
+        }
+
+        public override void Exit()
+        {
         }
     }
 }

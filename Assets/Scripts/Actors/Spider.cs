@@ -7,9 +7,8 @@ namespace VRShooting
 {
     public class Spider : Enemy
     {
-
+        [SerializeField] float coeffcientOfDistance = 1f;
         NavMeshAgent agent;
-
 
 
         protected override void Awake()
@@ -20,11 +19,8 @@ namespace VRShooting
 
         private void Start()
         {
-            var onUnitCircle = CustomMath.onUnitCircle;
-            var target = new Vector3(onUnitCircle.x, 0f, onUnitCircle.y) * status.AroundRange + player.position;
-            var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            go.transform.position = target;
-            go.transform.localScale *= .2f;
+            var diffNormalized = (transform.position - player.position).normalized;
+            var target = diffNormalized * coeffcientOfDistance + player.position;
             agent.SetDestination(target);
         }
 

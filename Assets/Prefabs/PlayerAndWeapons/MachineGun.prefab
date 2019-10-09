@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2947593740543203166}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Tripod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5180160443617783231}
   - component: {fileID: 1680052105825952992}
   - component: {fileID: 4667708208374329530}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6920014395085602612}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7207060366225691174}
   - component: {fileID: 6942457995386715608}
   - component: {fileID: 5014226681892098620}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3410253812108339730}
   - component: {fileID: 3410253812108339731}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CrossHairPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 3410253812167424536}
   - component: {fileID: 3410253812167424543}
   - component: {fileID: 3410253812167424542}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WaveUICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 3410253812617099018}
   - component: {fileID: 3410253812617099028}
   - component: {fileID: 3410253812617099019}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CrossHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 3410253812846052623}
   - component: {fileID: 3410253812846052617}
   - component: {fileID: 3410253812846052616}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 3410253813234551322}
   - component: {fileID: 3410253813234551321}
   - component: {fileID: 3410253813234551320}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CrossHairCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 3410253813524585860}
   - component: {fileID: 3410253813524585862}
   - component: {fileID: 3410253813524585861}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 6318078541703975429}
   - component: {fileID: 6647254607607311590}
   - component: {fileID: 3289989943012506800}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6076527853065230748}
   - component: {fileID: 2263264301659241419}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: MachineGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 8205036102838164459}
   - component: {fileID: 8191340402800102636}
   - component: {fileID: 7845789074281468862}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8131908288268861890}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BarrelPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ PrefabInstance:
     - target: {fileID: 2867179030096024530, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2867179030096024530, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
@@ -1077,22 +1077,22 @@ PrefabInstance:
     - target: {fileID: 5891917184305925498, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1836893304349049385, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 758121076712866231, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3605779500571110474, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3402339283495743164, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
@@ -1102,12 +1102,12 @@ PrefabInstance:
     - target: {fileID: 3402339283495743164, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5869537800692777007, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7724970500095975931, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
@@ -1117,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 7724970500095975931, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 714970744414363666, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
@@ -1127,7 +1127,7 @@ PrefabInstance:
     - target: {fileID: 6113950513261328786, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5337074752662664050, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
@@ -1137,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 8929321211488096268, guid: 4f2a546da37328e4594be98c1ce3c9e3,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2a546da37328e4594be98c1ce3c9e3, type: 3}

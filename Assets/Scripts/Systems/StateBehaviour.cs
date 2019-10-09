@@ -29,11 +29,17 @@ namespace VRShooting
         protected async Task TransitionWaveAsync(StageManager.GameState nextState)
         {
             await Task.Delay(1000);
-            //context.Post(,state =>
-            //{
-            ////Debug.Log($"ManagedThreadId = {Thread.CurrentThread.ManagedThreadId}");
-            //TransitionGameState(nextState);
-            //});
+            TransitionGameState(nextState);
+        }
+        protected IEnumerator TransitionWaveCoroutine(StageManager.GameState gs)
+        {
+            yield return new WaitForSeconds(waveTimeSeconds);
+            TransitionGameState(gs);
+        }
+        protected IEnumerator TransitionWaveCoroutine(StageManager.GameState gs,float waitSeconds)
+        {
+            yield return new WaitForSeconds(waitSeconds);
+            TransitionGameState(gs);
         }
     }
     public interface IGameState

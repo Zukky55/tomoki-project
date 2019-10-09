@@ -127,7 +127,7 @@ namespace VRShooting
         /// </summary>
         void PerformButtonRayCastingAndProcessing()
         {
-            var viewportOfCrossHair = Camera.main.WorldToScreenPoint(crossHair.position);
+            var viewportOfCrossHair = Camera.main.WorldToScreenPoint(crossHair.position - barrel.position);
             var pointerEventData = new PointerEventData(EventSystem.current)
             {
                 position = viewportOfCrossHair
@@ -136,6 +136,10 @@ namespace VRShooting
             EventSystem.current.RaycastAll(pointerEventData, raycastResults);
             if (raycastResults.Any())
             {
+                foreach (var item in raycastResults)
+                {
+                    Debug.Log($"result = {item.gameObject.name}");
+                }
                 RaycastResult detectedUIOfButton = raycastResults.FirstOrDefault(ui => ui.gameObject.CompareTag("Button"));
                 if (detectedUIOfButton.gameObject)
                 {
@@ -160,17 +164,17 @@ namespace VRShooting
         /// </remarks>
         void SetInputVector()
         {
-            var mouseDiff = Input.mousePosition - mousePrevPos;
+            var mouseDiff = mousePrevPos != Vector3.zero ? Input.mousePosition - mousePrevPos : Vector3.zero;
             if (mouseDiff != Vector3.zero)
             {
                 horizontal = mouseDiff.x;
                 vertical = mouseDiff.y;
-                mousePrevPos = Input.mousePosition;
             }
             else
             {
                 horizontal = vertical = 0f;
             }
+            mousePrevPos = Input.mousePosition;
         }
 
         /// <summary>

@@ -23,17 +23,10 @@ namespace VRShooting
             for (int i = 0; i < amount;)
             {
                 var rndValue = Random.Range(0, spawnNodes.Count);
-                if (!indexes.Contains(rndValue))
-                {
-                    indexes.Add(rndValue);
-                    var go = Instantiate(enemyPrefab, spawnNodes[rndValue].transform.position, Quaternion.identity);
-                    spawnedEnemies.Add(go.GetComponent<Spider>());
-                    i++;
-                }
-                else
-                {
-                    continue;
-                }
+                indexes.Add(rndValue);
+                var go = Instantiate(enemyPrefab, spawnNodes[rndValue].transform.position, Quaternion.identity);
+                spawnedEnemies.Add(go.GetComponent<Spider>());
+                i++;
             }
             return spawnedEnemies;
         }

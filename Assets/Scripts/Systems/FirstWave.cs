@@ -13,7 +13,9 @@ namespace VRShooting
         {
             BeesDirector.Play();
             Debug.Log($"ManagedThreadId = {Thread.CurrentThread.ManagedThreadId}");
-            await TransitionWaveAsync(StageManager.GameState.SecondWave);
+            //await TransitionWaveAsync(StageManager.GameState.SecondWave);
+            Debug.Log($"BeesDirector.duration={BeesDirector.duration}");
+            StartCoroutine(TransitionWaveCoroutine(StageManager.GameState.SecondWave, (float)BeesDirector.duration));
         }
 
         public override void Execute()
@@ -23,5 +25,6 @@ namespace VRShooting
         public override void Exit()
         {
         }
+
     }
 }

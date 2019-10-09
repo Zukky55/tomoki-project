@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 8944816578548341688, guid: d35ff956ab31be9439a4c1472a00cdcd,
         type: 3}
       propertyPath: m_Name
-      value: SEObj
+      value: BulletSE
+      objectReference: {fileID: 0}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4316777053099049983, guid: d35ff956ab31be9439a4c1472a00cdcd,
         type: 3}

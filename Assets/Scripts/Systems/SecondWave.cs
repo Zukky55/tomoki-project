@@ -14,7 +14,8 @@ namespace VRShooting
             // 蜂の群れのtimelineを複数パターン作って、ランダムに活かせるかもしくはその数文順番に活かせる
             Debug.Log($"FirstWaveきた");
             spiderSpawner.Spawn(amount);
-            await TransitionWaveAsync(StageManager.GameState.SecondWave);
+            //await TransitionWaveAsync(StageManager.GameState.SecondWave);
+            //StartCoroutine(TransitionWaveCoroutine(StageManager.GameState.SecondWave));
         }
 
 

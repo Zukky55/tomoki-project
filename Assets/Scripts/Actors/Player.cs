@@ -1,20 +1,35 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+
 
 namespace VRShooting
 {
     public class Player : ManagedMono
     {
+        /// <summary>hit point</summary>
+        public int Hp { get => hp; set => hp = value; }
+
+        [SerializeField] [Header("Hit Point")] int hp;
         [SerializeField] Transform barrel;
 
-        /// <summary>
-        /// コントローラー完成したら消す
-        /// </summary>
         public override void MFixedUpdate()
         {
+            // TODO: コントローラー完成したら消す
             var diff = barrel.localRotation.eulerAngles.y - transform.localRotation.eulerAngles.y;
             transform.RotateAround(barrel.position, Vector3.up, diff);
+        }
+
+        public void TakeDamage(int pow)
+        {
+            // TODO post processing stack使って画面をどんどん赤くする
+            hp -= pow;
+            if (hp <= 0)
+            {
+                StageManager.Instance.SetState(StageManager.GameState.GameOver);
+            }
         }
     }
 }

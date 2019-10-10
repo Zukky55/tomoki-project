@@ -8,6 +8,7 @@ namespace VRShooting
     public class Spider : Enemy
     {
         [SerializeField] float coeffcientOfDistance = 1f;
+        [SerializeField] float targetLineThreshold = 1f;
         NavMeshAgent agent;
 
 
@@ -19,13 +20,15 @@ namespace VRShooting
 
         private void Start()
         {
-            var diffNormalized = (transform.position - player.position).normalized;
-            var target = diffNormalized * coeffcientOfDistance + player.position;
+            var diffNormalized = (transform.position - playerEye.position).normalized;
+            var target = diffNormalized * coeffcientOfDistance + playerEye.position;
             agent.SetDestination(target);
+            agent.updateRotation = false;
         }
 
         public override void MUpdate()
         {
+            base.MUpdate();
             //if (Input.GetMouseButtonDown(0))
             //{
             //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -35,6 +38,10 @@ namespace VRShooting
             //        agent.SetDestination(hit.point);
             //    }
             //}
+            if (agent.remainingDistance < targetLineThreshold)
+            {
+                Attack();
+            }
         }
 
         public override void TakeDamage(int amount)

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c88647c474747c43adecf0eea03fda1, type: 3}
   m_Name: Bee
   m_EditorClassIdentifier: 
-  hp: 20
+  hp: 3
   pow: 1
   def: 0
-  spd: 10
+  speed: 0
+  aroundRange: 0
+  turnSpeed: 10
+  moveCheckThreshold: 0.02
+  attackInterval: 10

@@ -13,10 +13,11 @@ namespace VRShooting
         [SerializeField] float linearAmount = 0.1f;
         [SerializeField] GameObject WaveUIObj;
         [SerializeField] Transform barrel;
+        [SerializeField] Transform crossHair;
         [SerializeField] Text textBox;
         [SerializeField] [Multiline(3)] string firstWave;
         [SerializeField] [Multiline(3)] string secondWave;
-        [SerializeField] [Multiline(3)] string thirdWave;
+        [SerializeField] [Multiline(3)] string bossWave;
 
         StageManager stageManager;
         protected override void Awake()
@@ -29,6 +30,7 @@ namespace VRShooting
 
         public override void MFixedUpdate()
         {
+            transform.position = Vector3.Lerp(transform.position, crossHair.position +crossHair.up,linearAmount);
             transform.rotation = Quaternion.Lerp(transform.rotation, barrel.rotation, linearAmount);
         }
 
@@ -43,7 +45,7 @@ namespace VRShooting
                     await DisplayWaveInfoAsync(secondWave);
                     break;
                 case StageManager.GameState.BossWave:
-                    await DisplayWaveInfoAsync(thirdWave);
+                    await DisplayWaveInfoAsync(bossWave);
                     break;
                 case StageManager.GameState.GameCrear:
                 case StageManager.GameState.GameOver:

@@ -4768,7 +4768,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2faa208cb15168f4daa55adc47632b4d, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4825,8 +4825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2570bddb82c0140bd3bf4223d9477e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  populationOfFlock: 30
-  beePrefab: {fileID: 1549523932491572461, guid: 1a9b639948c6647fe837d19511fc6a8e,
+  populationOfFlock: 10
+  beePrefab: {fileID: 3914075329157497106, guid: 83e118403a6d86f44a622bf23c82828a,
     type: 3}
 --- !u!95 &8615889207917139220
 Animator:

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: GunStatus
   m_EditorClassIdentifier: 
   rollSpd: 0.5
-  fireInterval: 0.08
-  firePow: 1
+  fireInterval: 0.1
+  bulletPow: 1
   bulletSpd: 0.5
-  bullet: {fileID: 5249662033855211829, guid: 4232ea131b275914cae0e5ea7bbe9141, type: 3}

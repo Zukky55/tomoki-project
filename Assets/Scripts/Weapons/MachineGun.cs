@@ -49,18 +49,29 @@ namespace VRShooting
             }
         }
 
-        /// <summary>機関銃のパラメーター</summary>
-        [SerializeField] [Header("機関銃のパラメーター")] GunStatus masterData;
         /// <summary>玉の射出座標</summary>
-        [SerializeField] [Header("玉の射出座標")] Transform muzzleNode;
+        [SerializeField] [Header("玉の射出座標")] Transform muzzle;
         /// <summary>Barrel's transform</summary>
         [SerializeField] Transform barrel;
         /// <summary>Transform of CrossHair</summary>
         [SerializeField] Transform crossHair;
+        /// <summary>The casing position</summary>
+        [SerializeField] Transform casingNode;
+
+        /// <summary>機関銃のパラメーター</summary>
+        [SerializeField] [Header("機関銃のパラメーター")] GunStatus masterData;
+        /// <summary>銃弾のprefab</summary>
+        [SerializeField] [Header("Casing effect")] GameObject casingEffect;
+        /// <summary>発射エフェクト</summary>
+        [SerializeField] [Header("発射エフェクト")] ParticleSystem fireEffect;
+        /// <summary>The animator of Machinegun.</summary>
+        [SerializeField] Animator animator;
+
         /// <summary>Clamp of <see cref="InputVector"/></summary>
         [SerializeField] Clamp clamp;
         /// <summary><see cref="barrel"/>の仰角の回転制限値の閾値</summary>
         [SerializeField] float elevationAngleLimit = 45f;
+        /// <summary>Variable for storing <see cref="masterData"/></summary>
         GunStatus status;
 
         protected override void Awake()
@@ -112,14 +123,24 @@ namespace VRShooting
         {
             elapsedTimeSinseFire += Time.deltaTime;
             if (!Input.GetMouseButton(0) || elapsedTimeSinseFire < status.FireInterval) return;
-
             // InitStateのstateの時だけ撃ったベクトルにRayを飛ばしてButtonを押す。
             if (StageManager.Instance.CurrentState == StageManager.GameState.InitState) PerformButtonRayCastingAndProcessing();
 
-            var go = Instantiate(status.BulletPrefab, muzzleNode.position + muzzleNode.forward, Quaternion.identity);
-            var bullet = go.GetComponent<Bullet>();
-            bullet.GiveInitialVelocity(muzzleNode.forward * status.BulletSpd);
+            animator.SetTrigger(MachinegunAnimParam.Shoot.ToString());
+            Instantiate(casingEffect, casingNode.position, Quaternion.identity);
+            fireEffect.Play(true);
             elapsedTimeSinseFire = 0f;
+
+            var ray = new Ray(muzzle.position, crossHair.position - muzzle.position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Component component;
+                Enemy enemy;
+                if (!hit.collider.TryGetComponent(typeof(Enemy), out component)) return;
+                enemy = component as Enemy;
+                enemy.TakeDamage(status.BulletPow);
+            }
         }
 
         /// <summary>
@@ -127,7 +148,7 @@ namespace VRShooting
         /// </summary>
         void PerformButtonRayCastingAndProcessing()
         {
-            var viewportOfCrossHair = Camera.main.WorldToScreenPoint(crossHair.position - barrel.position);
+            var viewportOfCrossHair = Camera.main.WorldToScreenPoint(crossHair.position /*- barrel.position*/);
             var pointerEventData = new PointerEventData(EventSystem.current)
             {
                 position = viewportOfCrossHair
@@ -188,6 +209,12 @@ namespace VRShooting
             BothNormalized,
             HorizontalNormalized,
             VerticalNormalized,
+        }
+        public enum MachinegunAnimParam
+        {
+            DoOpen,
+            DoReload,
+            Shoot,
         }
     }
 }

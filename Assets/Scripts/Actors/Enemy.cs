@@ -17,13 +17,13 @@ namespace VRShooting
         public Vector3 Velocity { get => velocity; set => velocity = value; }
 
         /// <summary>Transform of Player.</summary>
-        static protected Transform player;
+        static protected Transform playerEye;
+        static protected Player player;
 
 
         /// <summary>Status of enemy.</summary>
         [SerializeField] [Header("敵のパラメーター")] protected EnemyStatus masterData;
-        /// <summary>進行方向から向きを取得する判断をする閾値</summary>
-        [SerializeField, Range(0f, 1f)] protected float moveCheckThreshold;
+
         protected EnemyStatus status;
         protected Animator animator;
         protected Vector3 velocity;
@@ -31,13 +31,13 @@ namespace VRShooting
         protected override void Awake()
         {
             base.Awake();
-            if (!player)
-            {
-                //player = GameObject.FindGameObjectWithTag("Player").transform;
-                player = Camera.main.transform;
-            }
+            if (!playerEye) playerEye = Camera.main.transform;
+            if (!player) player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             animator = GetComponent<Animator>();
             status = Instantiate(masterData);
+
+            prevPos = transform.position;
+            elapsedTimeFromAttacked = status.AttackInterval;
         }
         /// <summary>
         /// Managed Update
@@ -45,6 +45,13 @@ namespace VRShooting
         public override void MUpdate()
         {
             MoveCheck();
+            ForwardAdjustment();
+        }
+
+        protected virtual void ForwardAdjustment()
+        {
+            var targetRot = Quaternion.LookRotation(forwardDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * status.TurnSpeed);
         }
 
         /// <summary>
@@ -61,12 +68,18 @@ namespace VRShooting
             }
         }
 
+       protected float elapsedTimeFromAttacked = 0f;
         /// <summary>
         /// 攻撃処理
         /// </summary>
         public virtual void Attack()
         {
+            elapsedTimeFromAttacked += Time.deltaTime;
+            if (elapsedTimeFromAttacked < status.AttackInterval) return;
+            elapsedTimeFromAttacked = 0f;
             animator.SetTrigger(AnimParam.Attack.ToString());
+            player.TakeDamage(status.Pow);
+            Debug.Log($"TakeDamaaaaaaaaaaaage");
         }
 
         /// <summary>
@@ -91,21 +104,25 @@ namespace VRShooting
 
             if (diff == Vector3.zero)
             {
+                forwardDirection = playerEye.position - transform.position;
                 isMoving = false;
             }
-            else if (Vector3.Dot(diff, diff) > moveCheckThreshold)
+            else if (Vector3.Dot(diff, diff) >= status.MoveCheckThreshold)
             {
                 forwardDirection = diff.normalized;
-                isMoving = false;
+                isMoving = true;
             }
             else
             {
-                forwardDirection = player.position - transform.position;
+                forwardDirection = playerEye.position - transform.position;
                 isMoving = true;
             }
             /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
             if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
+            {
+                Debug.Log($"{gameObject.name},{isMoving}");
                 animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
+            }
             prevPos = transform.position;
         }
     }

@@ -286,6 +286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 4149514689787595651, guid: 8f607ffcc7ff14f4ab1158efeed5b079,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4149514689787595662, guid: 8f607ffcc7ff14f4ab1158efeed5b079,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,11 +734,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2faa208cb15168f4daa55adc47632b4d, type: 2}
+      objectReference: {fileID: 2100000, guid: b9e8902075cc93247babc885095b45dc, type: 2}
     - target: {fileID: 213034793693881631, guid: d10a16f9344ac3e428315b0051e69da6,
         type: 3}
       propertyPath: m_RenderMode
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 213034793693881631, guid: d10a16f9344ac3e428315b0051e69da6,
         type: 3}
@@ -2028,11 +2033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2faa208cb15168f4daa55adc47632b4d, type: 2}
+      objectReference: {fileID: 2100000, guid: b9e8902075cc93247babc885095b45dc, type: 2}
     - target: {fileID: 213034793693881631, guid: d10a16f9344ac3e428315b0051e69da6,
         type: 3}
       propertyPath: m_RenderMode
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 213034793693881631, guid: d10a16f9344ac3e428315b0051e69da6,
         type: 3}
@@ -2391,6 +2396,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 469880361}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1244625361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244625363}
+  - component: {fileID: 1244625362}
+  m_Layer: 0
+  m_Name: BossPositionNoise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1244625362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244625361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67590b78436a2d4d8e342ae653dd095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 4149514689787595651, guid: 8f607ffcc7ff14f4ab1158efeed5b079,
+    type: 3}
+--- !u!4 &1244625363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244625361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1279201483
 PrefabInstance:
@@ -3627,11 +3677,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 213034793693881631, guid: d10a16f9344ac3e428315b0051e69da6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2faa208cb15168f4daa55adc47632b4d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d10a16f9344ac3e428315b0051e69da6, type: 3}
 --- !u!1001 &224871055875172156
@@ -3897,7 +3942,7 @@ PrefabInstance:
     - target: {fileID: 7312572107282970681, guid: d45031576cf5fdd49ae8ff8a83ff82c8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5989823025637296682, guid: d45031576cf5fdd49ae8ff8a83ff82c8,
         type: 3}
@@ -4132,6 +4177,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914075329157497106, guid: 83e118403a6d86f44a622bf23c82828a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3914075329157497119, guid: 83e118403a6d86f44a622bf23c82828a,
         type: 3}

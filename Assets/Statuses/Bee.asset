@@ -18,5 +18,5 @@ MonoBehaviour:
   speed: 0
   aroundRange: 0
   turnSpeed: 10
-  moveCheckThreshold: 0.02
+  moveCheckThreshold: 0.03
   attackInterval: 10

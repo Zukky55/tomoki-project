@@ -88,6 +88,7 @@ namespace VRShooting
             SetInputVector();
             Roll();
             Fire();
+            Debug.DrawLine(muzzle.position, crossHair.position,Color.red);
         }
 
         /// <summary>
@@ -131,7 +132,9 @@ namespace VRShooting
             fireEffect.Play(true);
             elapsedTimeSinseFire = 0f;
 
-            var ray = new Ray(muzzle.position, crossHair.position - muzzle.position);
+            var dir = (crossHair.position - muzzle.position).normalized;
+            var ray = new Ray(muzzle.position, dir);
+            
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {

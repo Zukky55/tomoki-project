@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213034793693881630}
   serializedVersion: 6
-  lengthInSec: 100
+  lengthInSec: 200
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 200
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4808,7 +4808,7 @@ ParticleSystemRenderer:
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4300000, guid: 27a32759d4052dc4e92960cc22f85b43, type: 3}
+  m_Mesh: {fileID: 2381465842977315803, guid: b237a95f1f0253744bd9ca152c0e6fd5, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

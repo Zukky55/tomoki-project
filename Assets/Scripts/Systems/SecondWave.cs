@@ -9,6 +9,8 @@ namespace VRShooting
         [SerializeField] int spawnEachAmount;
         [SerializeField] int spawnCount;
         [SerializeField] float interval;
+        /// <summary>指定回数分蜘蛛を出現させた後次のウェーブを呼ぶ迄の待機時間</summary>
+        [SerializeField] float callNextWaveDelayTime = 5f;
 
         public override void Enter()
         {
@@ -18,17 +20,31 @@ namespace VRShooting
         }
 
 
+        int spawnedCount = 0;
         float elapsedTime = 0f;
         public override void Execute()
         {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime < interval) return;
-            elapsedTime = 0f;
-            spiderSpawner.Spawn(spawnEachAmount);
+            SpawnSpider();
         }
 
         public override void Exit()
         {
+        }
+
+        void SpawnSpider()
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime < interval || spawnedCount > spawnCount) return;
+            elapsedTime = 0f;
+            spiderSpawner.Spawn(spawnEachAmount);
+
+            spawnedCount++;
+            if (spawnedCount >= spawnCount)
+            {
+                StartCoroutine(TransitionWaveCoroutine(StageManager.GameState.BossWave, callNextWaveDelayTime));
+                // incrementして判定に引っかかる様にする
+                spawnedCount++;
+            }
         }
     }
 }

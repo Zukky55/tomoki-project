@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,9 +16,7 @@ namespace VRShooting
         [SerializeField] Transform barrel;
         [SerializeField] Transform crossHair;
         [SerializeField] Text textBox;
-        [SerializeField] [Multiline(3)] string firstWave;
-        [SerializeField] [Multiline(3)] string secondWave;
-        [SerializeField] [Multiline(3)] string bossWave;
+        [SerializeField] List<UIMaterial> uiMats;
 
         StageManager stageManager;
         protected override void Awake()
@@ -30,31 +29,14 @@ namespace VRShooting
 
         public override void MFixedUpdate()
         {
-            transform.position = Vector3.Lerp(transform.position, crossHair.position +crossHair.up,linearAmount);
+            transform.position = Vector3.Lerp(transform.position, crossHair.position + crossHair.up, linearAmount);
             transform.rotation = Quaternion.Lerp(transform.rotation, barrel.rotation, linearAmount);
         }
 
         private async void DisplayInfoAsync(StageManager.GameState gameState)
         {
-            switch (gameState)
-            {
-                case StageManager.GameState.FirstWave:
-                    await DisplayWaveInfoAsync(firstWave);
-                    break;
-                case StageManager.GameState.SecondWave:
-                    await DisplayWaveInfoAsync(secondWave);
-                    break;
-                case StageManager.GameState.BossWave:
-                    await DisplayWaveInfoAsync(bossWave);
-                    break;
-                case StageManager.GameState.GameCrear:
-                case StageManager.GameState.GameOver:
-                case StageManager.GameState.None:
-                case StageManager.GameState.InitState:
-                    break;
-                default:
-                    break;
-            }
+            var mat = uiMats.FirstOrDefault(m => m.TargetState == gameState);
+            await DisplayWaveInfoAsync(mat.Script);
         }
         public async Task DisplayWaveInfoAsync(string textScript)
         {
@@ -62,6 +44,19 @@ namespace VRShooting
             textBox.text = textScript;
             await Task.Delay(waitMilliSecconds);
             WaveUIObj.SetActive(false);
+        }
+
+        [Serializable]
+        class UIMaterial
+        {
+            public string Script => script;
+            public Color TextColor => textColor;
+            public StageManager.GameState TargetState => targetState;
+
+
+            [SerializeField] StageManager.GameState targetState;
+            [SerializeField] [Multiline(3)] string script;
+            [SerializeField] Color textColor;
         }
     }
 }

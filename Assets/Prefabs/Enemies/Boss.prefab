@@ -13,7 +13,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterData: {fileID: 11400000, guid: 4c4b3b68d34ed084e9023be63311643d, type: 2}
-  moveCheckThreshold: 0.02
+--- !u!136 &7501744927112974568
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4149514689787595651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.81
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.45, z: -0.23}
 --- !u!1001 &1137052691932088977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,6 +119,26 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2.46
       objectReference: {fileID: 0}
+    - target: {fileID: 3914075328729169554, guid: 83e118403a6d86f44a622bf23c82828a,
+        type: 3}
+      propertyPath: m_Name
+      value: hachigata_wings
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914075328729169564, guid: 83e118403a6d86f44a622bf23c82828a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b49a2bf922d36b49b9786265c88a52e, type: 2}
+    - target: {fileID: 3914075329734448932, guid: 83e118403a6d86f44a622bf23c82828a,
+        type: 3}
+      propertyPath: m_Name
+      value: hachigata_body
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914075329734448934, guid: 83e118403a6d86f44a622bf23c82828a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 65dbd36169fecb545b537722a21ac1b0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83e118403a6d86f44a622bf23c82828a, type: 3}
 --- !u!1 &4149514689787595651 stripped

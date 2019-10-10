@@ -46,6 +46,7 @@ namespace VRShooting
         [SerializeField] GameObject spider;
         [SerializeField] GameObject boss;
         [SerializeField] GameObject individualState;
+        [SerializeField] GameState now;
 
         StateBehaviour currentState;
         StateBehaviour[] gameStates;

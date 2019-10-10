@@ -79,7 +79,6 @@ namespace VRShooting
             elapsedTimeFromAttacked = 0f;
             animator.SetTrigger(AnimParam.Attack.ToString());
             player.TakeDamage(status.Pow);
-            Debug.Log($"TakeDamaaaaaaaaaaaage");
         }
 
         /// <summary>
@@ -120,7 +119,6 @@ namespace VRShooting
             /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
             if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
             {
-                Debug.Log($"{gameObject.name},{isMoving}");
                 animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
             }
             prevPos = transform.position;

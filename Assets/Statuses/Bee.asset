@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c88647c474747c43adecf0eea03fda1, type: 3}
   m_Name: Bee
   m_EditorClassIdentifier: 
-  hp: 3
+  hp: 10
   pow: 1
   def: 0
   speed: 0

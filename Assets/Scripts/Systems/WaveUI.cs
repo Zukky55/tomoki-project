@@ -36,8 +36,9 @@ namespace VRShooting
         private async void DisplayInfoAsync(StageManager.GameState gameState)
         {
             var mat = uiMats.FirstOrDefault(m => m.TargetState == gameState);
-            await DisplayWaveInfoAsync(mat.Script);
+            if (mat != null) await DisplayWaveInfoAsync(mat.Script);
         }
+
         public async Task DisplayWaveInfoAsync(string textScript)
         {
             WaveUIObj.SetActive(true);

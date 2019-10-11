@@ -41,7 +41,7 @@ namespace VRShooting
         public GameObject Boss => boss;
         public GameState CurrentState => currentState.StateId;
 
-        [SerializeField] GameState firstState = GameState.InitState;
+        [SerializeField] GameState firstState ;
         [SerializeField] GameObject beeFlock;
         [SerializeField] GameObject spider;
         [SerializeField] GameObject boss;
@@ -74,7 +74,7 @@ namespace VRShooting
         /// <param name="nextState"></param>
         public void SetState(GameState nextState)
         {
-            if (nextState.Equals(GameState.InitState)) currentState?.Exit();
+            if (nextState != GameState.InitState) currentState?.Exit();
             currentState = gameStates.First(gs => gs.StateId == nextState);
             currentState.Enter();
             OnGameStateEnter?.Invoke(currentState.StateId);

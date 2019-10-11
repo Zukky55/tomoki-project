@@ -21,8 +21,10 @@ namespace VRShooting
             base.MUpdate();
             if (!animator.GetBool(AnimParam.IsMoving.ToString()))
             {
-                Attack();
+                AttackCheck();
             }
         }
+
+
     }
 }

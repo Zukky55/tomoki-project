@@ -20,3 +20,5 @@ MonoBehaviour:
   turnSpeed: 10
   moveCheckThreshold: 0.03
   attackInterval: 10
+  attackSE: {fileID: 8331389143572058106, guid: ffabae515241bd541bcbd9a1346e415f,
+    type: 3}

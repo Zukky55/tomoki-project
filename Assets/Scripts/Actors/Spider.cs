@@ -40,7 +40,7 @@ namespace VRShooting
             //}
             if (agent.remainingDistance < targetLineThreshold)
             {
-                Attack();
+                AttackCheck();
             }
         }
 

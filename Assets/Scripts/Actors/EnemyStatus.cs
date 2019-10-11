@@ -23,6 +23,7 @@ namespace VRShooting
         /// <summary>進行方向から向きを取得する判断をする閾値</summary>
         public float MoveCheckThreshold { get => moveCheckThreshold; set => moveCheckThreshold = value; }
         public float AttackInterval { get => attackInterval; set => attackInterval = value; }
+        public GameObject AttackSE{ get => attackSE; set => attackSE = value; }
 
 
         [SerializeField] [Header("Hit Point")] int hp;
@@ -33,6 +34,8 @@ namespace VRShooting
         [SerializeField] [Header("Linear interpolation factor for direction change.")] float turnSpeed = 1f;
         [SerializeField] [Header("Move amount threshold")] [Range(0f, 1f)] protected float moveCheckThreshold;
         [SerializeField] [Header("Interval time of Attack")] float attackInterval;
+        [SerializeField] [Header("Sound effect on Attack.")] GameObject attackSE;
+
 
     }
 }

@@ -68,18 +68,25 @@ namespace VRShooting
             }
         }
 
-       protected float elapsedTimeFromAttacked = 0f;
+        protected float elapsedTimeFromAttacked = 0f;
         /// <summary>
         /// 攻撃処理
         /// </summary>
-        public virtual void Attack()
+        public virtual void AttackCheck()
         {
             elapsedTimeFromAttacked += Time.deltaTime;
             if (elapsedTimeFromAttacked < status.AttackInterval) return;
             elapsedTimeFromAttacked = 0f;
+            Attack();
+        }
+
+        public virtual void Attack()
+        {
             animator.SetTrigger(AnimParam.Attack.ToString());
             player.TakeDamage(status.Pow);
         }
+
+        public void PlayAttackSE() => Instantiate(status.AttackSE, transform.position, Quaternion.identity);
 
         /// <summary>
         /// 死ぬ処理

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VRShooting
 {
@@ -13,11 +16,11 @@ namespace VRShooting
         {
             base.Awake();
             bossPS = GetComponent<ParticleSystem>();
+            particles = new ParticleSystem.Particle[bossPS.emission.burstCount];
         }
         private void Start()
         {
-            bossPS.Play();
-
+            StartCoroutine(EmitTheBoss());
         }
         GameObject boss;
         ParticleSystem.Particle[] particles;
@@ -32,13 +35,22 @@ namespace VRShooting
         }
         public override void MUpdate()
         {
-            if (bossPS == null || StageManager.Instance.CurrentState != StageManager.GameState.BossWave) return;
-            bossPS.GetParticles(particles);
-            var pos = bossPS.transform.TransformPoint(particles[0].position);
-            if (pos.y < 0) pos = new Vector3(pos.x, 0f, pos.z);
-            boss.transform.position = pos;
+            if (StageManager.Instance.CurrentState != StageManager.GameState.BossWave) return;
+            if (bossPS.particleCount >= bossPS.emission.burstCount
+                && boss
+                && !isToDeath())
+            {
+                var pos = bossPS.transform.TransformPoint(particles[0].position);
+                if (pos.y < 0) pos = new Vector3(pos.x, 0f, pos.z);
+                boss.transform.position = pos;
+            }
+        }
 
-            if (!boss) Destroy(gameObject);
+        Animator bossAnim;
+        bool isToDeath()
+        {
+            if (!bossAnim) bossAnim = boss.GetComponent<Animator>();
+            return bossAnim.GetBool("ToDeath");
         }
     }
 }

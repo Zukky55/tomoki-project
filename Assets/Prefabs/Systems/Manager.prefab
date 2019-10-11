@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c9b7db122cb7d4b93cb8188435e0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 15
+  waveTimeSeconds: 20
   stateId: 2
   BeesDirector: {fileID: 0}
 --- !u!114 &8158864492235461937
@@ -78,11 +78,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034c222e50191584481549a8301f39e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 15
+  waveTimeSeconds: 20
   stateId: 3
   spiderSpawner: {fileID: 0}
-  amount: 40
-  interval: 0
+  spawnEachAmount: 2
+  spawnCount: 5
+  interval: 5
+  callNextWaveDelayTime: 5
 --- !u!114 &8158864492235461936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,8 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409016d333608b542a3c664de9a540ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstState: 1
+  firstState: 4
   beeFlock: {fileID: 213034793693881630, guid: d10a16f9344ac3e428315b0051e69da6, type: 3}
   spider: {fileID: 7312572107282970681, guid: d45031576cf5fdd49ae8ff8a83ff82c8, type: 3}
   boss: {fileID: 4149514689787595651, guid: 8f607ffcc7ff14f4ab1158efeed5b079, type: 3}
   individualState: {fileID: 8158864492235461949}
+  now: 0

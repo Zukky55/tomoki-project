@@ -160,10 +160,6 @@ namespace VRShooting
             EventSystem.current.RaycastAll(pointerEventData, raycastResults);
             if (raycastResults.Any())
             {
-                foreach (var item in raycastResults)
-                {
-                    Debug.Log($"result = {item.gameObject.name}");
-                }
                 RaycastResult detectedUIOfButton = raycastResults.FirstOrDefault(ui => ui.gameObject.CompareTag("Button"));
                 if (detectedUIOfButton.gameObject)
                 {

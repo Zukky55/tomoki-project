@@ -4825,7 +4825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2570bddb82c0140bd3bf4223d9477e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  populationOfFlock: 10
+  populationOfFlock: 25
   beePrefab: {fileID: 3914075329157497106, guid: 83e118403a6d86f44a622bf23c82828a,
     type: 3}
 --- !u!95 &8615889207917139220

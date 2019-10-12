@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ namespace VRShooting
     {
         [SerializeField] float coeffcientOfDistance = 1f;
         [SerializeField] float targetLineThreshold = 1f;
+        [SerializeField] float ThresholdDistanceFromPlayer = 2f;
         NavMeshAgent agent;
 
 
@@ -26,32 +28,34 @@ namespace VRShooting
             agent.updateRotation = false;
         }
 
+
         public override void MUpdate()
         {
             base.MUpdate();
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    RaycastHit hit;
-            //    if (Physics.Raycast(ray, out hit))
-            //    {
-            //        agent.SetDestination(hit.point);
-            //    }
-            //}
-            if (agent.remainingDistance < targetLineThreshold)
+
+            var distanceFromPlayer = playerEye.position - transform.position;
+            if (agent.remainingDistance < targetLineThreshold && distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer)
             {
                 AttackCheck();
             }
         }
 
-        public override void TakeDamage(int amount)
+        public override async void TakeDamage(int amount)
         {
-            animator.SetTrigger(AnimParam.Damage.ToString());
             status.Hp -= amount;
+            agent.isStopped = true;
             if (status.Hp <= 0)
             {
-                agent.isStopped = true;
                 animator.SetTrigger(AnimParam.ToDeath.ToString());
+            }
+            else
+            {
+                animator.SetTrigger(AnimParam.Damage.ToString());
+                await PauseAsync(1000, () =>
+                {
+                    if (agent.isStopped)
+                        agent.isStopped = false;
+                });
             }
         }
     }

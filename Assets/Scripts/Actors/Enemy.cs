@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace VRShooting
 {
@@ -60,11 +61,14 @@ namespace VRShooting
         /// <param name="amount"></param>
         public virtual void TakeDamage(int amount)
         {
-            animator.SetTrigger(AnimParam.Damage.ToString());
             status.Hp -= amount;
             if (status.Hp <= 0)
             {
                 animator.SetTrigger(AnimParam.ToDeath.ToString());
+            }
+            else
+            {
+                animator.SetTrigger(AnimParam.Damage.ToString());
             }
         }
 
@@ -129,6 +133,11 @@ namespace VRShooting
                 animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
             }
             prevPos = transform.position;
+        }
+        protected virtual async Task PauseAsync(int delayMilliSecond,Action action)
+        {
+            await Task.Delay(delayMilliSecond);
+            action.Invoke();
         }
     }
 

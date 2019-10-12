@@ -24,7 +24,17 @@ namespace VRShooting
                 AttackCheck();
             }
         }
-
-
+        public override void TakeDamage(int amount)
+        {
+            status.Hp -= amount;
+            if (status.Hp <= 0)
+            {
+                animator.SetTrigger(AnimParam.ToDeath.ToString());
+            }
+            else
+            {
+                animator.SetTrigger(AnimParam.Damage.ToString());
+            }
+        }
     }
 }

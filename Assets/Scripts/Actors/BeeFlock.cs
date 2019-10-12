@@ -66,7 +66,6 @@ namespace VRShooting
                 if (animators[index].GetBool("ToDeath"))
                 {
                     bees[index].transform.parent = null;
-                    Debug.Log("aaaaaa");
                     continue;
                 }
 

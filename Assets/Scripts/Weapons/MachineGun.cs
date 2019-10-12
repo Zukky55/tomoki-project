@@ -66,6 +66,7 @@ namespace VRShooting
         [SerializeField] [Header("発射エフェクト")] ParticleSystem fireEffect;
         /// <summary>The animator of Machinegun.</summary>
         [SerializeField] Animator animator;
+        [SerializeField] Transform playerEye;
 
         /// <summary>Clamp of <see cref="InputVector"/></summary>
         [SerializeField] Clamp clamp;
@@ -88,7 +89,7 @@ namespace VRShooting
             SetInputVector();
             Roll();
             Fire();
-            Debug.DrawLine(muzzle.position, crossHair.position,Color.red);
+            Debug.DrawLine(muzzle.position, crossHair.position, Color.red);
         }
 
         /// <summary>
@@ -132,11 +133,11 @@ namespace VRShooting
             fireEffect.Play(true);
             elapsedTimeSinseFire = 0f;
 
-            var dir = (crossHair.position - muzzle.position).normalized;
-            var ray = new Ray(muzzle.position, dir);
-            
+            var dir = (crossHair.position - playerEye.position).normalized;
+            var ray = new Ray(playerEye.position, dir);
+
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 Component component;
                 Enemy enemy;

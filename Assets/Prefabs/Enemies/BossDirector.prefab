@@ -112,11 +112,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossPS
       objectReference: {fileID: 0}
-    - target: {fileID: 7991073913511969775, guid: 13336079fee37594a837dc09021c08ad,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7991073913511969772, guid: 13336079fee37594a837dc09021c08ad,
         type: 3}
       propertyPath: m_LocalPosition.x

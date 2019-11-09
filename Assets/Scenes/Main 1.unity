@@ -549,6 +549,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6709112838849220857, guid: 85ba1283ab1717f4d9d6594495d81157,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ba1283ab1717f4d9d6594495d81157, type: 3}
 --- !u!1 &1715880635
@@ -1250,41 +1255,10 @@ PrefabInstance:
       propertyPath: BeesDirector
       value: 
       objectReference: {fileID: 157346552}
-    - target: {fileID: 8158864492235461942, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: waveTimeSeconds
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8158864492235461937, guid: bdff85346d832d14e828659a4c12efdd,
         type: 3}
       propertyPath: spiderSpawner
       value: 
       objectReference: {fileID: 757796495214317749}
-    - target: {fileID: 8158864492235461937, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: spawnEachAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8158864492235461937, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: spawnCount
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8158864492235461937, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: callNextWaveDelayTime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8158864492420891304, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 603428085719777529, guid: 270441e560c33b84ba1e96f640723960,
-        type: 3}
-    - target: {fileID: 8158864492420891304, guid: bdff85346d832d14e828659a4c12efdd,
-        type: 3}
-      propertyPath: firstState
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdff85346d832d14e828659a4c12efdd, type: 3}

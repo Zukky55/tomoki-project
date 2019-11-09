@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d531d08021d7a47994f69cdd6e190a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 0
   stateId: 1
   StartGameCanvas: {fileID: 0}
 --- !u!114 &8158864492235461942
@@ -63,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c9b7db122cb7d4b93cb8188435e0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 20
   stateId: 2
   BeesDirector: {fileID: 0}
 --- !u!114 &8158864492235461937
@@ -78,13 +76,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034c222e50191584481549a8301f39e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 20
   stateId: 3
   spiderSpawner: {fileID: 0}
-  spawnEachAmount: 2
-  spawnCount: 5
+  spawnEachAmount: 1
+  spawnCount: 15
   interval: 5
-  callNextWaveDelayTime: 5
+  callNextWaveDelayTime: 20
 --- !u!114 &8158864492235461936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b0dcc1b9583574ea5c9fea6df1f78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 0
   stateId: 4
 --- !u!114 &8158864492235461939
 MonoBehaviour:
@@ -111,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcf7a81285f25e45bce5de247abee4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 0
   stateId: 5
 --- !u!114 &8158864492235461938
 MonoBehaviour:
@@ -125,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9678568dfa8564745929e309fb06e4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTimeSeconds: 0
   stateId: 6
 --- !u!1 &8158864492420891306
 GameObject:
@@ -171,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409016d333608b542a3c664de9a540ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstState: 4
+  firstState: 1
   beeFlock: {fileID: 213034793693881630, guid: d10a16f9344ac3e428315b0051e69da6, type: 3}
   spider: {fileID: 7312572107282970681, guid: d45031576cf5fdd49ae8ff8a83ff82c8, type: 3}
-  boss: {fileID: 4149514689787595651, guid: 8f607ffcc7ff14f4ab1158efeed5b079, type: 3}
+  boss: {fileID: 603428085719777529, guid: 270441e560c33b84ba1e96f640723960, type: 3}
   individualState: {fileID: 8158864492235461949}
   now: 0

@@ -22,13 +22,13 @@ namespace VRShooting
         public abstract void Enter();
         public abstract void Execute();
         public abstract void Exit();
-        protected void TransitionGameState(StageManager.GameState nextState) => stageManager.SetState(nextState);
+        protected void SetGameState(StageManager.GameState nextState) => stageManager.SetState(nextState);
 
 
         protected IEnumerator TransitionWaveCoroutine(StageManager.GameState gs,float waitSeconds)
         {
             yield return new WaitForSeconds(waitSeconds);
-            TransitionGameState(gs);
+            SetGameState(gs);
         }
     }
     public interface IGameState

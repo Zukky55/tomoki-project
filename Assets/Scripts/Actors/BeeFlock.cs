@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UniRx.Async;
 
 namespace VRShooting
 {
@@ -9,6 +11,10 @@ namespace VRShooting
     /// </summary>
     public class BeeFlock : ManagedMono
     {
+        public int SurvivingBeesCount => bees.Count(bee => bee != null);
+
+        public bool AnySurvivingBees => bees != null ? bees.Any(bee => bee != null) : true;//これはもう応急処置
+
         /// <summary>Emitする蜂の群れの個体数</summary>
         [SerializeField] short populationOfFlock;
         /// <summary>蜂のprefab</summary>
@@ -27,7 +33,7 @@ namespace VRShooting
         }
 
         /// <summary>生成した蜂の群れ</summary>
-        GameObject[] bees;
+        GameObject[] bees = null;
         /// <summary>生成したそれぞれのParticle</summary>
         ParticleSystem.Particle[] particles;
         Animator[] animators;
@@ -35,11 +41,11 @@ namespace VRShooting
         /// Particleを<see cref="populationOfFlock"/>分emitし,その数分<see cref="Bee"/>を生成する。
         /// </summary>
         /// <returns>Emissionが終わって<see cref="ParticleSystem.particleCount"/>に反映される迄の待機時間</returns>
-        public IEnumerator EmitTheBees()
+        public async void EmitTheBeesAsync()
         {
             flockingPS.emission.SetBurst(0, new ParticleSystem.Burst(0, populationOfFlock, populationOfFlock, 1, 0.01f));
             flockingPS.Play();
-            yield return new WaitUntil(() => flockingPS.particleCount >= flockingPS.emission.burstCount);
+            await UniTask.WaitUntil(() => flockingPS.particleCount >= flockingPS.emission.burstCount);
             bees = new GameObject[flockingPS.particleCount];
             animators = new Animator[flockingPS.particleCount];
             particles = new ParticleSystem.Particle[flockingPS.particleCount];
@@ -74,6 +80,5 @@ namespace VRShooting
                 bees[index].transform.position = pos;
             }
         }
-
     }
 }

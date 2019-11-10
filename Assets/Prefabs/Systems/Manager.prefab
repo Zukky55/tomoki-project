@@ -64,6 +64,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateId: 2
   BeesDirector: {fileID: 0}
+  firstCut: {fileID: 11400000, guid: 94505b6dd187c3d4ea7d47594a1eca50, type: 2}
+  secondCut: {fileID: 11400000, guid: f751ab110c9a54e4fb0765278e85a56c, type: 2}
+  thirdCut: {fileID: 11400000, guid: f1dfea4c5656a0846a084182b1540bf3, type: 2}
+  firstFlock: {fileID: 0}
+  secondFlock: {fileID: 0}
+  thirdFlock: {fileID: 0}
 --- !u!114 &8158864492235461937
 MonoBehaviour:
   m_ObjectHideFlags: 0

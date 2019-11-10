@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 16.957293
+      value: 48.40037
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -554,21 +554,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 24.265802
+      value: 58.99611
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.0961657
+      value: -17.340841
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.07428986
+      value: -0.47286278
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.1727569
+      value: 1.099616
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11100000, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 372d115ebb2437c4389bfbdafe6b237c, type: 3}
 --- !u!95 &4032077441115396383 stripped
 Animator:
@@ -683,6 +684,12 @@ PrefabInstance:
       propertyPath: fireEffect
       value: 
       objectReference: {fileID: 3462998414781195582}
+    - target: {fileID: 3475403571215246511, guid: fe25ad4f0942ecb4392ec1e7b13ae160,
+        type: 3}
+      propertyPath: reloadSEObj
+      value: 
+      objectReference: {fileID: 5859592915736309939, guid: 739f48ad6dbce8a48a6a4198b197c3ec,
+        type: 3}
     - target: {fileID: 3475403571215246511, guid: fe25ad4f0942ecb4392ec1e7b13ae160,
         type: 3}
       propertyPath: animator

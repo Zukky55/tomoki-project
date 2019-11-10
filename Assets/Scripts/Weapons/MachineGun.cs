@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UniRx;
+using UniRx.Async;
 
 namespace VRShooting
 {
@@ -64,6 +66,8 @@ namespace VRShooting
         [SerializeField] [Header("Casing effect")] GameObject casingEffect;
         /// <summary>発射エフェクト</summary>
         [SerializeField] [Header("発射エフェクト")] ParticleSystem fireEffect;
+        /// <summary>Reload SE</summary>
+        [SerializeField] [Header("Reload SE")] GameObject reloadSEObj;
         /// <summary>The animator of Machinegun.</summary>
         [SerializeField] Animator animator;
         [SerializeField] Transform playerEye;
@@ -118,13 +122,26 @@ namespace VRShooting
 
         /// <summary>銃弾発射してからの経過時間</summary>
         float elapsedTimeSinseFire = 0f;
+        /// <summary>リロードしてからの発射弾数</summary>
+        int fireCountSinceReloaded = 0;
+        /// <summary>reload中かどうか</summary>
+        bool isReloading = false;
         /// <summary>
         /// 銃弾発射処理.
         /// </summary>
         public void Fire()
         {
             elapsedTimeSinseFire += Time.deltaTime;
-            if (!Input.GetMouseButton(0) || elapsedTimeSinseFire < status.FireInterval) return;
+
+            if (!Input.GetMouseButton(0)
+                || elapsedTimeSinseFire < status.FireInterval
+                || isReloading)
+            {
+                return;
+            }
+
+            ++fireCountSinceReloaded;
+
             // InitStateのstateの時だけ撃ったベクトルにRayを飛ばしてButtonを押す。
             if (StageManager.Instance.CurrentState == StageManager.GameState.InitState) PerformButtonRayCastingAndProcessing();
 
@@ -145,6 +162,36 @@ namespace VRShooting
                 enemy = component as Enemy;
                 enemy.TakeDamage(status.BulletPow);
             }
+
+            if (fireCountSinceReloaded >= status.Magazine)
+            {
+                ReloadAsync();
+            }
+        }
+
+        /// <summary>
+        /// The Reload on async.
+        /// </summary>
+        async void ReloadAsync()
+        {
+            isReloading = true;
+            animator.SetTrigger(MachinegunAnimParam.DoReload.ToString());
+            Instantiate(reloadSEObj, transform.position, Quaternion.identity);
+
+            var animInfo = animator.GetCurrentAnimatorClipInfo(0);
+            await UniTask.WaitUntil(() =>
+            {
+                animInfo = animator.GetCurrentAnimatorClipInfo(0);
+                if (animInfo.Length == 0) return false;
+
+                return animInfo[0].clip.name == "MachineGun_reload";
+            });
+
+            await UniTask.Delay(TimeSpan.FromSeconds(animInfo[0].clip.length));
+
+            // reset.
+            fireCountSinceReloaded = 0;
+            isReloading = false;
         }
 
         /// <summary>

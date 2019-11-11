@@ -61,7 +61,7 @@ namespace VRShooting
             base.Awake();
             status = Instantiate(masterData);
             inputProvider = GetComponent<IInputProvider>();
-            roller = new MachineGunMouseRoller(elevationAngleLimit,status.RollSpd);
+            roller = new MachineGunOculusTouchRoller(elevationAngleLimit,status.RollSpd);
         }
         
         /// <summary>

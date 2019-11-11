@@ -9,6 +9,7 @@ namespace VRShooting
         [SerializeField]
         OVRInput.Controller controller = OVRInput.Controller.RTouch;
 
+
         protected override void SetInputVector()
         {
             Rotation = OVRInput.GetLocalControllerRotation(controller);

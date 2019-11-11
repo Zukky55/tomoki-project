@@ -390,7 +390,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 26.933332
+  - time: 26.383333
     functionName: AllowToAttackPlayer
     data: 
     objectReferenceParameter: {fileID: 0}

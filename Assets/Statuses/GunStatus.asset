@@ -16,4 +16,4 @@ MonoBehaviour:
   fireInterval: 0.1
   bulletPow: 1
   bulletSpd: 0.5
-  magazine: 10
+  magazine: 30

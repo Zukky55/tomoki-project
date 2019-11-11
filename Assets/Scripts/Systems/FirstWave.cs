@@ -37,20 +37,20 @@ namespace VRShooting
 
         public async override void Enter()
         {
-            Debug.Log($"{firstCut}よばれた");
             // Call the first cut.
+            Debug.Log($"{firstCut}よばれた");
             BeesDirector.Play(firstCut);
             await WaitCutAsync(firstFlock, firstCut);
-            Debug.Log($"{secondCut}よばれた");
             // Call the second cut.
+            Debug.Log($"{secondCut}よばれた");
             BeesDirector.Play(secondCut);
             await WaitCutAsync(secondFlock, secondCut);
-            Debug.Log($"{thirdCut}よばれた");
             // Call the third cut.
+            Debug.Log($"{thirdCut}よばれた");
             BeesDirector.Play(thirdCut);
             await WaitCutAsync(thirdFlock, thirdCut);
-            Debug.Log($"すべてよばれた");
             // Set the game state.
+            Debug.Log($"SecondWaveへ");
             SetGameState(StageManager.GameState.SecondWave);
         }
 

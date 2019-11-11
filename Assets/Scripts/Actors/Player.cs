@@ -18,8 +18,10 @@ namespace VRShooting
         public override void MFixedUpdate()
         {
             // TODO: コントローラー完成したら消す
+#if false
             var diff = barrel.localRotation.eulerAngles.y - transform.localRotation.eulerAngles.y;
             transform.RotateAround(barrel.position, Vector3.up, diff);
+#endif
         }
 
         public void TakeDamage(int pow)

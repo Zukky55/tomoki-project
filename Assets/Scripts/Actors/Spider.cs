@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UniRx.Async;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,10 +38,12 @@ namespace VRShooting
             var distanceFromPlayer = playerEye.position - transform.position;
             if (agent.remainingDistance < targetLineThreshold && distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer)
             {
+                agent.isStopped = true;
                 AttackCheck();
             }
         }
 
+        const float delayTime = 1;
         public override async void TakeDamage(int amount)
         {
             status.Hp -= amount;
@@ -51,12 +55,38 @@ namespace VRShooting
             else
             {
                 animator.SetTrigger(AnimParam.Damage.ToString());
-                await PauseAsync(1000, () =>
-                {
-                    if (agent.isStopped)
-                        agent.isStopped = false;
-                });
+                await UniTask.Delay(TimeSpan.FromSeconds(delayTime));
+                agent.isStopped = false;
             }
+        }
+
+        protected override void MoveCheck()
+        {
+            var diff = transform.position - prevPos;
+            var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
+
+
+            if (diff == Vector3.zero)
+            {
+                forwardDirection = playerEye.position - transform.position;
+                isMoving = false;
+            }
+            else if (Vector3.Dot(diff, diff) >= status.MoveCheckThreshold)
+            {
+                forwardDirection = diff.normalized;
+                isMoving = true;
+            }
+            else
+            {
+                forwardDirection = playerEye.position - transform.position;
+                isMoving = false;
+            }
+            /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
+            if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
+            {
+                animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
+            }
+            prevPos = transform.position;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UniRx.Async;
+using UnityEngine.Playables;
 
 namespace VRShooting
 {
@@ -11,10 +12,13 @@ namespace VRShooting
     /// </summary>
     public class BeeFlock : ManagedMono
     {
-        public int SurvivingBeesCount => bees.Count(bee => bee != null);
-
+        /// <summary>
+        /// 群れに攻撃を許可するか否か
+        /// </summary>
+        public bool IsAllowAttack { get; private set; } = false;
         public bool AnySurvivingBees => bees != null ? bees.Any(bee => bee != null) : true;//これはもう応急処置
 
+        [SerializeField] PlayableDirector beesDirector;
         /// <summary>Emitする蜂の群れの個体数</summary>
         [SerializeField] short populationOfFlock;
         /// <summary>蜂のprefab</summary>
@@ -43,6 +47,8 @@ namespace VRShooting
         /// <returns>Emissionが終わって<see cref="ParticleSystem.particleCount"/>に反映される迄の待機時間</returns>
         public async void EmitTheBeesAsync()
         {
+            if (!Application.isPlaying) return;
+
             flockingPS.emission.SetBurst(0, new ParticleSystem.Burst(0, populationOfFlock, populationOfFlock, 1, 0.01f));
             flockingPS.Play();
             await UniTask.WaitUntil(() => flockingPS.particleCount >= flockingPS.emission.burstCount);
@@ -79,6 +85,14 @@ namespace VRShooting
                 if (pos.y < 0) pos = new Vector3(pos.x, 0f, pos.z);
                 bees[index].transform.position = pos;
             }
+        }
+
+        /// <summary>
+        /// 群れにプレイヤーを攻撃する許可を与える
+        /// </summary>
+        public void AllowToAttackPlayer()
+        {
+            IsAllowAttack = true;
         }
     }
 }

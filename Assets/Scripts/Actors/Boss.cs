@@ -38,5 +38,33 @@ namespace VRShooting
             }
         }
         public void CrearGame() => StageManager.Instance.SetState(StageManager.GameState.GameCrear);
+
+        protected override void MoveCheck()
+        {
+            var diff = transform.position - prevPos;
+            var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
+
+            if (diff == Vector3.zero)
+            {
+                forwardDirection = playerEye.position - transform.position;
+                isMoving = false;
+            }
+            else if (Vector3.Dot(diff, diff) >= status.MoveCheckThreshold)
+            {
+                forwardDirection = diff.normalized;
+                isMoving = true;
+            }
+            else
+            {
+                forwardDirection = playerEye.position - transform.position;
+                isMoving = false;
+            }
+            /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
+            if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
+            {
+                animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
+            }
+            prevPos = transform.position;
+        }
     }
 }

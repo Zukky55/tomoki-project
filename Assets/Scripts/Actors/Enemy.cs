@@ -4,13 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UniRx.Async;
 
 namespace VRShooting
 {
     /// <summary>
     /// Enemy
     /// </summary>
-    public class Enemy : ManagedMono, IDamagable, IAttackable
+    public abstract class Enemy : ManagedMono, IDamagable, IAttackable
     {
         /// <summary>Status</summary>   
         public EnemyStatus Status => status;
@@ -28,6 +29,7 @@ namespace VRShooting
         protected EnemyStatus status;
         protected Animator animator;
         protected Vector3 velocity;
+        protected bool isAttackable = false;
 
         protected override void Awake()
         {
@@ -86,6 +88,7 @@ namespace VRShooting
 
         public virtual void Attack()
         {
+            Debug.Log($"{gameObject.name}は攻撃しまーす");
             animator.SetTrigger(AnimParam.Attack.ToString());
             player.TakeDamage(status.Pow);
         }
@@ -107,34 +110,8 @@ namespace VRShooting
         /// <summary>
         /// 座標差分を取って動いているかどうかの判定処理
         /// </summary>
-        protected virtual void MoveCheck()
-        {
-            var diff = transform.position - prevPos;
-            var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
-
-            if (diff == Vector3.zero)
-            {
-                forwardDirection = playerEye.position - transform.position;
-                isMoving = false;
-            }
-            else if (Vector3.Dot(diff, diff) >= status.MoveCheckThreshold)
-            {
-                forwardDirection = diff.normalized;
-                isMoving = true;
-            }
-            else
-            {
-                forwardDirection = playerEye.position - transform.position;
-                isMoving = true;
-            }
-            /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
-            if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)
-            {
-                animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
-            }
-            prevPos = transform.position;
-        }
-        protected virtual async Task PauseAsync(int delayMilliSecond,Action action)
+        protected abstract void MoveCheck();
+        protected virtual async UniTask PauseAsync(int delayMilliSecond,Action action)
         {
             await Task.Delay(delayMilliSecond);
             action.Invoke();

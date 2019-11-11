@@ -68,7 +68,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 4360672415032204037}
-    m_Duration: 20.066666666666666
+    m_Duration: 24.883333333333333
     m_TimeScale: 1
     m_ParentTrack: {fileID: 482570877866244120}
     m_EaseInDuration: 0
@@ -629,4 +629,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: EmitTheBeesAsync
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 14.933333
+    functionName: AllowToAttackPlayer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

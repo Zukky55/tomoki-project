@@ -1132,36 +1132,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MachineGun_ver3
       objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2070059238052823746, guid: 000cc635e73bac541830d4643c648cf5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4049912040436652700, guid: 000cc635e73bac541830d4643c648cf5,
         type: 3}
       propertyPath: m_LocalPosition.x

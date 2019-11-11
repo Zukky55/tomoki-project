@@ -31,7 +31,7 @@ namespace VRShooting
             //    firstControllerRot = provider.Rotation;
             //}
             //var diff = firstTargetRot * Quaternion.Inverse(initialRot);
-            var q = provider.Rotation ;
+            var q = provider.Rotation;
 
             target.localRotation = q;
 
@@ -39,7 +39,6 @@ namespace VRShooting
             //Debug.Log($"diff = {diff}");
             //var q = ;
             //Debug.Log($"rot = {q}");
-
         }
     }
 }

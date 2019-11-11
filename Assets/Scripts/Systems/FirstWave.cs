@@ -86,6 +86,5 @@ namespace VRShooting
         public override void Exit()
         {
         }
-
     }
 }

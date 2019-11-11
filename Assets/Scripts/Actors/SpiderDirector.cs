@@ -10,7 +10,7 @@ namespace VRShooting
     public class SpiderDirector : MonoBehaviour
     {
         [SerializeField] List<SpawnNode> spawnNodes;
-        [SerializeField] GameObject spider;
+        [SerializeField] GameObject spiderPrefab;
 
         public List<Spider> Spawn(GameObject enemyPrefab, int amount)
         {
@@ -31,7 +31,14 @@ namespace VRShooting
             return spawnedEnemies;
         }
 
-        public List<Spider> Spawn(int amount) => Spawn(spider, amount);
+        public Spider Spawn()
+        {
+            var node = spawnNodes[Random.Range(0, spawnNodes.Count - 1)];
+            var go = Instantiate(spiderPrefab, node.transform.position, Quaternion.identity);
+            return go.GetComponent<Spider>();
+        }
+
+        public List<Spider> Spawn(int amount) => Spawn(spiderPrefab, amount);
 
     }
 }

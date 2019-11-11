@@ -7,6 +7,7 @@ namespace VRShooting
     {
         public override void Enter()
         {
+
         }
 
         public override void Execute()

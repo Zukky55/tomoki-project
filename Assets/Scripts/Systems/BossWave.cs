@@ -15,7 +15,7 @@ namespace VRShooting
         {
             if (!boss)
             {
-                stageManager.SetState(StageManager.GameState.GameCrear);
+                stageManager.SetState(StageManager.GameState.GameClear);
             }
         }
 

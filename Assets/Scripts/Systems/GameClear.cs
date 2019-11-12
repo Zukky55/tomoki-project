@@ -10,11 +10,13 @@ namespace VRShooting
 
         public override void Enter()
         {
+            
             OnGameClearEvent?.Invoke();
         }
 
         public override void Execute()
         {
+    
         }
 
         public override void Exit()

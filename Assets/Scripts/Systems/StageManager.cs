@@ -88,7 +88,7 @@ namespace VRShooting
             FirstWave,
             SecondWave,
             BossWave,
-            GameCrear,
+            GameClear,
             GameOver,
         }
     }

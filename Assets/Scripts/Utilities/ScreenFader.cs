@@ -16,9 +16,15 @@ namespace VRShooting
         [SerializeField]
         GameObject fadeSphere;
 
+        private void Update()
+        {
+            GUI.color = Color.black;
+        }
 
         public async UniTask FadeOutAsync(float fadeTime)
         {
+            var camera = Camera.main;
+            
             var mat = fadeSphere.GetComponent<MeshRenderer>().material;
 
             var disposable = this.UpdateAsObservable()

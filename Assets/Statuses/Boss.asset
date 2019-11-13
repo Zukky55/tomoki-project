@@ -18,7 +18,7 @@ MonoBehaviour:
   speed: 0
   aroundRange: 0
   turnSpeed: 10
-  moveCheckThreshold: 0.03
+  moveCheckThreshold: 0.1
   attackInterval: 10
   attackSE: {fileID: 8331389143572058106, guid: ffabae515241bd541bcbd9a1346e415f,
     type: 3}

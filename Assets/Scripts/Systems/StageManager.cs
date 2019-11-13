@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 namespace VRShooting
@@ -41,7 +42,7 @@ namespace VRShooting
         public GameObject Boss => boss;
         public GameState CurrentState => currentState.StateId;
 
-        [SerializeField] GameState firstState ;
+        [SerializeField] GameState firstState;
         [SerializeField] GameObject beeFlock;
         [SerializeField] GameObject spider;
         [SerializeField] GameObject boss;
@@ -56,6 +57,13 @@ namespace VRShooting
             base.Awake();
             gameStates = individualState.GetComponents<StateBehaviour>();
             Debug.Log($"gameStates.Count() = {gameStates.Count()}");
+
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            ScreenFader.Instance.FadeIn();
         }
 
         private void Start()
@@ -66,6 +74,11 @@ namespace VRShooting
         public override void MUpdate()
         {
             currentState?.Execute();
+
+            if (OVRInput.GetDown(OVRInput.Button.Start))
+            {
+                Application.Quit();
+            }
         }
 
         /// <summary>

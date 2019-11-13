@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx.Async;
 
 namespace VRShooting
 {
     public class WaveUI : ManagedMono
     {
-        [SerializeField] int waitMilliSecconds = 2000;
         [SerializeField] float linearAmount = 0.1f;
         [SerializeField] GameObject WaveUIObj;
         [SerializeField] Transform barrel;
@@ -36,15 +36,19 @@ namespace VRShooting
         private async void DisplayInfoAsync(StageManager.GameState gameState)
         {
             var mat = uiMats.FirstOrDefault(m => m.TargetState == gameState);
-            if (mat != null) await DisplayWaveInfoAsync(mat.Script);
+            if (mat != null) await DisplayWaveInfoAsync(mat);
         }
 
-        public async Task DisplayWaveInfoAsync(string textScript)
+        async UniTask DisplayWaveInfoAsync(UIMaterial mat)
         {
             WaveUIObj.SetActive(true);
-            textBox.text = textScript;
-            await Task.Delay(waitMilliSecconds);
-            WaveUIObj.SetActive(false);
+            textBox.text = mat.Script;
+            textBox.color = mat.TextColor;
+            await UniTask.Delay(TimeSpan.FromSeconds(mat.WaitSecond));
+            if (WaveUIObj != null)
+            {
+                WaveUIObj.SetActive(false);
+            }
         }
 
         [Serializable]
@@ -53,11 +57,11 @@ namespace VRShooting
             public string Script => script;
             public Color TextColor => textColor;
             public StageManager.GameState TargetState => targetState;
-
-
+            public int WaitSecond => waitMilliSecconds;
+            [SerializeField] Color textColor;
+            [SerializeField] int waitMilliSecconds = 0;
             [SerializeField] StageManager.GameState targetState;
             [SerializeField] [Multiline(3)] string script;
-            [SerializeField] Color textColor;
         }
     }
 }

@@ -19,7 +19,6 @@ namespace VRShooting
             // When shot start button then Starting First wave.
             if (Input.GetMouseButtonDown(0))
             {
-                FadeNavigator.Instance.ChangeScene("Main");
             }
         }
 

@@ -29,7 +29,7 @@ MonoBehaviour:
   masterData: {fileID: 11400000, guid: 44463732c53eb834ba5bf6dba82740a5, type: 2}
   coeffcientOfDistance: 5
   targetLineThreshold: 1
-  agentTimeLimit: 3
+  ThresholdDistanceFromPlayer: 5
 --- !u!195 &8645177390107993705
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -12,11 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletSE
       objectReference: {fileID: 0}
-    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4316777053099049983, guid: d35ff956ab31be9439a4c1472a00cdcd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,5 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -818136284101754133, guid: ca566f186196e6a4ba08dda80ff697e7,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35ff956ab31be9439a4c1472a00cdcd, type: 3}

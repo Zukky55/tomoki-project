@@ -12,16 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReloadSE
       objectReference: {fileID: 0}
-    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7f0a3ae115a8bd14f92d84b50acadae7, type: 3}
-    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.24
-      objectReference: {fileID: 0}
     - target: {fileID: 4316777053099049983, guid: d35ff956ab31be9439a4c1472a00cdcd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -77,5 +67,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f0a3ae115a8bd14f92d84b50acadae7, type: 3}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 700890495165563582, guid: d35ff956ab31be9439a4c1472a00cdcd,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -818136284101754133, guid: ca566f186196e6a4ba08dda80ff697e7,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d35ff956ab31be9439a4c1472a00cdcd, type: 3}

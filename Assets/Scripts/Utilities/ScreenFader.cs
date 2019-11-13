@@ -8,37 +8,52 @@ using UnityEngine.UI;
 using UniRx;
 using UniRx.Triggers;
 using UniRx.Async;
+using UnityEngine.SceneManagement;
 
 namespace VRShooting
 {
-    public class ScreenFader : MonoBehaviour
+    public class ScreenFader : MonoSingleton<ScreenFader>
     {
         [SerializeField]
         GameObject fadeSphere;
+        [SerializeField] Animator animator;
 
-        private void Update()
-        {
-            GUI.color = Color.black;
-        }
+        //public void FadeIn(float fadeTime=05f)
+        //{
+        //    var mat = fadeSphere.GetComponent<MeshRenderer>().material;
+        //    mat.color = Color.black ;
 
-        public async UniTask FadeOutAsync(float fadeTime)
-        {
-            var camera = Camera.main;
-            
-            var mat = fadeSphere.GetComponent<MeshRenderer>().material;
+        //    var disposable = this.UpdateAsObservable()
+        //        .Select(_ => mat.color.a)
+        //        .Where(alpha => alpha > 0f)
+        //        .Subscribe(alpha =>
+        //        {
+        //            alpha -= Time.deltaTime * fadeTime;
+        //            var c = mat.color;
+        //            mat.color = new Color(c.r, c.g, c.b, alpha);
+        //        })
+        //        .AddTo(this);
+        //}
 
-            var disposable = this.UpdateAsObservable()
-                .Select(_ => mat.color.a)
-                .Where(alpha => alpha < 1f)
-                .Subscribe(alpha =>
-                {
-                    alpha -= Time.deltaTime * fadeTime;
-                    var c = mat.color;
-                    mat.color = new Color(c.r, c.g, c.b, alpha);
-                })
-                .AddTo(this);
-            await UniTask.WaitUntil(() => mat.color.a <= 0f);
+        //public void FadeOut(float fadeTime = 0.5f)
+        //{
+        //    var mat = fadeSphere.GetComponent<MeshRenderer>().material;
+        //    mat.color = Color.clear;
 
-        }
+        //    var disposable = this.UpdateAsObservable()
+        //        .Select(_ => mat.color.a)
+        //        .Where(alpha => alpha < 1f)
+        //        .Subscribe(alpha =>
+        //        {
+        //            alpha += Time.deltaTime * fadeTime;
+        //            var c = mat.color;
+        //            mat.color = new Color(c.r, c.g, c.b, alpha);
+        //        })
+        //        .AddTo(this);
+        //}
+
+        public void FadeOut() => animator.SetTrigger("FadeOut");
+        public void FadeIn() => animator.SetTrigger("FadeIn");
+        public void ScreenChange(string name) => SceneManager.LoadScene(name);
     }
 }

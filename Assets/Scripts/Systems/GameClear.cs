@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UniRx.Async;
 
 namespace VRShooting
 {
@@ -8,15 +9,16 @@ namespace VRShooting
     {
         public event Action OnGameClearEvent = () => { };
 
-        public override void Enter()
+        public async override void Enter()
         {
-            
             OnGameClearEvent?.Invoke();
+            await UniTask.Delay(TimeSpan.FromSeconds(11f));
+            ScreenFader.Instance.FadeOut();
         }
 
         public override void Execute()
         {
-    
+
         }
 
         public override void Exit()

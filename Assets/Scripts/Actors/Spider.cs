@@ -30,20 +30,28 @@ namespace VRShooting
             agent.updateRotation = false;
         }
 
-
+        float time;
         public override void MUpdate()
         {
             base.MUpdate();
 
             var distanceFromPlayer = playerEye.position - transform.position;
-            if (agent.remainingDistance < targetLineThreshold && distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer)
+            if (distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer)
+            {
+                time += Time.deltaTime;
+            }
+            else
+            {
+                time = 0f;
+            }
+            if (agent.remainingDistance < targetLineThreshold && time > 5f)
             {
                 agent.isStopped = true;
                 AttackCheck();
             }
         }
 
-        const float delayTime = 1;
+        const float delayTime = 2;
         public override async void TakeDamage(int amount)
         {
             status.Hp -= amount;
@@ -56,7 +64,7 @@ namespace VRShooting
             {
                 animator.SetTrigger(AnimParam.Damage.ToString());
                 await UniTask.Delay(TimeSpan.FromSeconds(delayTime));
-                agent.isStopped = false;
+                if (agent != null) agent.isStopped = false;
             }
         }
 

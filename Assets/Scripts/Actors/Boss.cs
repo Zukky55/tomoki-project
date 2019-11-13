@@ -37,7 +37,7 @@ namespace VRShooting
                 });
             }
         }
-        public void CrearGame() => StageManager.Instance.SetState(StageManager.GameState.GameCrear);
+        public void CrearGame() => StageManager.Instance.SetState(StageManager.GameState.GameClear);
 
         protected override void MoveCheck()
         {

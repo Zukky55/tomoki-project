@@ -7,6 +7,7 @@ namespace VRShooting
     {
         public override void Enter()
         {
+            FadeNavigator.Instance.ChangeScene("Main");
         }
 
         public override void Execute()

@@ -12,7 +12,8 @@ namespace VRShooting
 
         protected override void SetInputVector()
         {
-            Rotation = OVRInput.GetLocalControllerRotation(controller);
+            var controllerRot= OVRInput.GetLocalControllerRotation(controller);
+            Rotation = controllerRot;
         }
     }
 }

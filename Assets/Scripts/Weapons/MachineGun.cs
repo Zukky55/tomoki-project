@@ -22,11 +22,11 @@ namespace VRShooting
         [SerializeField] [Header("玉の射出座標")] Transform muzzle;
         /// <summary>Barrel's transform</summary>
         [SerializeField] Transform barrel;
+        [SerializeField] Transform barrelRocator;
         /// <summary>Transform of CrossHair</summary>
         [SerializeField] Transform crossHair;
         /// <summary>The casing position</summary>
         [SerializeField] Transform casingNode;
-
         /// <summary>機関銃のパラメーター</summary>
         [SerializeField] [Header("機関銃のパラメーター")] GunStatus masterData;
         /// <summary>銃弾のprefab</summary>
@@ -69,7 +69,7 @@ namespace VRShooting
         /// </summary>
         public override void MUpdate()
         {
-            roller.Roll(inputProvider, ref barrel);
+            roller.Roll(inputProvider, ref barrelRocator);
             Fire();
             Debug.DrawLine(muzzle.position, crossHair.position, Color.red);
         }

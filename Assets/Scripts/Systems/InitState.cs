@@ -17,6 +17,10 @@ namespace VRShooting
         public override void Execute()
         {
             // When shot start button then Starting First wave.
+            if (Input.GetMouseButtonDown(0))
+            {
+                FadeNavigator.Instance.ChangeScene("Main");
+            }
         }
 
         public override void Exit()

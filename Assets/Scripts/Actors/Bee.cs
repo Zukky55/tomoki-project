@@ -70,6 +70,7 @@ namespace VRShooting
             // 群れから攻撃許可がおりている時自身が攻撃可能かどうか判断する
             if (myFlock.IsAllowAttack)
             {
+                Debug.Log($"攻撃チェック");
                 isAttackable = scalar > attackableBoderline;
             }
 

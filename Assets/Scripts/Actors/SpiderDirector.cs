@@ -11,6 +11,7 @@ namespace VRShooting
     {
         [SerializeField] List<SpawnNode> spawnNodes;
         [SerializeField] GameObject spiderPrefab;
+        public List<Spider> Spiders { get; private set; }
 
         public List<Spider> Spawn(GameObject enemyPrefab, int amount)
         {

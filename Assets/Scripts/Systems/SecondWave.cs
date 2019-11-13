@@ -52,7 +52,7 @@ namespace VRShooting
             spawnedCount++;
             if (spawnedCount >= spawnCount)
             {
-                StartCoroutine(TransitionWaveCoroutine(StageManager.GameState.BossWave, callNextWaveDelayTime));
+                SetGameState(StageManager.GameState.BossWave);
                 // incrementして判定に引っかかる様にする
                 spawnedCount++;
             }

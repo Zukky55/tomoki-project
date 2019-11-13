@@ -42,19 +42,22 @@ namespace VRShooting
         {
         }
 
+        bool isCalled;
         async void SpawnSpider()
         {
+            if (isCalled) return;
             elapsedTime += Time.deltaTime;
             if (elapsedTime < interval || spawnedCount > spawnCount) return;
             elapsedTime = 0f;
             spiders.Add(spiderSpawner.Spawn());
 
             spawnedCount++;
-            if (spawnedCount >= spawnCount)
+            if (spawnedCount >= spawnCount )
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(5f));
+                await UniTask.Delay(TimeSpan.FromSeconds(8f));
                 SetGameState(StageManager.GameState.BossWave);
                 // incrementして判定に引っかかる様にする
+                isCalled = true;
                 spawnedCount++;
             }
         }

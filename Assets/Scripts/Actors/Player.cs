@@ -26,7 +26,7 @@ namespace VRShooting
         public override void MUpdate()
         {
             // TODO: コントローラー完成したら消す
-#if true
+#if false
             var diff = barrel.localRotation.eulerAngles.y - transform.localRotation.eulerAngles.y;
             transform.RotateAround(barrel.position, Vector3.up, diff);
             //transform.localRotation = Quaternion.Lerp(transform.localRotation, barrel.localRotation, 0.9f);

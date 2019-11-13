@@ -42,7 +42,7 @@ namespace VRShooting
         {
         }
 
-        void SpawnSpider()
+        async void SpawnSpider()
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime < interval || spawnedCount > spawnCount) return;
@@ -52,6 +52,7 @@ namespace VRShooting
             spawnedCount++;
             if (spawnedCount >= spawnCount)
             {
+                await UniTask.Delay(TimeSpan.FromSeconds(5f));
                 SetGameState(StageManager.GameState.BossWave);
                 // incrementして判定に引っかかる様にする
                 spawnedCount++;

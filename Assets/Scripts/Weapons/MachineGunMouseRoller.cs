@@ -40,6 +40,7 @@ namespace VRShooting
                 /// 最低でも<see cref="elevationAngleLimit"/>*2以上あるので360側にループした回転値だと分かる.その為暫定でこの判定にしている
                 var xClamp = eulerX - elevationAngleLimit > elevationAngleLimit ? elevationAngleUpperLimit : elevationAngleLimit;
                 barrel.localRotation = Quaternion.Euler(new Vector3(xClamp, barrel.localRotation.eulerAngles.y, 0f));
+                //barrel.localRotation = Quaternion.Slerp(barrel.localRotation, rot, Time.fixedDeltaTime);
             }
         }
     }

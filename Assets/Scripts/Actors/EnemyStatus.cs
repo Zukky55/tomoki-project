@@ -32,7 +32,7 @@ namespace VRShooting
         [SerializeField] [Header("Speed")] float speed;
         [SerializeField] [Header("Coefficient of AroundRange")] float aroundRange;
         [SerializeField] [Header("Linear interpolation factor for direction change.")] float turnSpeed = 1f;
-        [SerializeField] [Header("Move amount threshold")] [Range(0f, 1f)] protected float moveCheckThreshold;
+        [SerializeField] [Header("Move amount threshold")]  protected float moveCheckThreshold;
         [SerializeField] [Header("Interval time of Attack")] float attackInterval;
         [SerializeField] [Header("Sound effect on Attack.")] GameObject attackSE;
 

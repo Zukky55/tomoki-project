@@ -94,5 +94,9 @@ namespace VRShooting
         {
             IsAllowAttack = true;
         }
+        public void DisallowToAttackPlayer()
+        {
+            IsAllowAttack = false;
+        }
     }
 }

@@ -46,6 +46,8 @@ namespace VRShooting
         /// <summary>Variable for storing <see cref="masterData"/></summary>
         GunStatus status;
 
+        public event Action OnHit = ()=>{};
+
         /// <summary>
         /// input provider
         /// </summary>
@@ -61,11 +63,12 @@ namespace VRShooting
             base.Awake();
             status = Instantiate(masterData);
             inputProvider = GetComponent<IInputProvider>();
-            roller = new MachineGunOculusTouchRoller(elevationAngleLimit,status.RollSpd);
+            //roller = new MachineGunOculusTouchRoller(elevationAngleLimit,status.RollSpd);
+            roller = new MachineGunMouseRoller(elevationAngleLimit, status.RollSpd);
         }
-        
+
         /// <summary>
-        /// Managed Update
+        /// Managed FixedUpdate
         /// </summary>
         public override void MUpdate()
         {
@@ -121,6 +124,8 @@ namespace VRShooting
             {
                 ReloadAsync();
             }
+
+            OnHit?.Invoke();
         }
 
         /// <summary>

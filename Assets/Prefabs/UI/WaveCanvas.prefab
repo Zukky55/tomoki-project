@@ -50,22 +50,22 @@ MonoBehaviour:
   crossHair: {fileID: 0}
   textBox: {fileID: 471128649512235320}
   uiMats:
-  - textColor: {r: 0.30996388, g: 1, b: 0.1462264, a: 1}
+  - textColor: {r: 1, g: 0.38039216, b: 0.8980392, a: 1}
     waitMilliSecconds: 3
     targetState: 2
     script: First Wave
-  - textColor: {r: 1, g: 0.9430442, b: 0.4575472, a: 1}
+  - textColor: {r: 1, g: 0.38039216, b: 0.8980392, a: 1}
     waitMilliSecconds: 3
     targetState: 3
     script: Second Wave
-  - textColor: {r: 1, g: 0.25943398, b: 0.25943398, a: 1}
+  - textColor: {r: 1, g: 0.38039216, b: 0.8980392, a: 1}
     waitMilliSecconds: 3
     targetState: 4
     script: Boss Wave
   - textColor: {r: 1, g: 0.3820755, b: 0.89867777, a: 1}
     waitMilliSecconds: 10
     targetState: 5
-    script: Game Crear!!
+    script: Game Clear!!
   - textColor: {r: 0.7264151, g: 0, b: 0, a: 1}
     waitMilliSecconds: 5
     targetState: 6

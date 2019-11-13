@@ -13,7 +13,7 @@ namespace VRShooting
         /// <summary>
         /// 自分の群れ
         /// </summary>
-        BeeFlock myFlock;
+        protected BeeFlock myFlock;
         const float attackableBoderline = 0.03f;
 
         protected override void Awake()
@@ -67,11 +67,9 @@ namespace VRShooting
                 animator.SetBool(AnimParam.IsMoving.ToString(), isMoving);
             }
 
-            // 群れから攻撃許可がおりている時自身が攻撃可能かどうか判断する
             if (myFlock.IsAllowAttack)
             {
-                Debug.Log($"攻撃チェック");
-                isAttackable = scalar > attackableBoderline;
+                AttackCheck();
             }
 
             prevPos = transform.position;

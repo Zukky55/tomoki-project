@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b7dec4bf9ca4144864084ab91b20d2, type: 3}
   m_Name: GunStatus
   m_EditorClassIdentifier: 
-  rollSpd: 0.5
+  rollSpd: 1.5
   fireInterval: 0.1
   bulletPow: 1
   bulletSpd: 0.5
-  magazine: 30
+  magazine: 50

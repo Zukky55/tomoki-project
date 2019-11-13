@@ -36,15 +36,11 @@ namespace VRShooting
             base.MUpdate();
 
             var distanceFromPlayer = playerEye.position - transform.position;
-            if (distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer)
-            {
-                time += Time.deltaTime;
-            }
-            else
-            {
-                time = 0f;
-            }
-            if (agent.remainingDistance < targetLineThreshold && time > 5f)
+            var isNearbly = distanceFromPlayer.magnitude < ThresholdDistanceFromPlayer;
+            //Debug.Log($"distanceFromPlayer.magnitude{distanceFromPlayer.magnitude} < ThresholdDistanceFromPlayer{ThresholdDistanceFromPlayer} " +
+                //$"= {isNearbly}|");
+            
+            if (/*agent.remainingDistance < targetLineThreshold && */isNearbly)
             {
                 agent.isStopped = true;
                 AttackCheck();
@@ -72,22 +68,18 @@ namespace VRShooting
         {
             var diff = transform.position - prevPos;
             var isMoving = animator.GetBool(AnimParam.IsMoving.ToString());
+            var scalar = Vector3.Dot(diff, diff);
 
-
-            if (diff == Vector3.zero)
+            Debug.Log($"scalar  = {scalar }<MoveCheckThreshold= {status.MoveCheckThreshold} = {scalar < status.MoveCheckThreshold}");
+            if (scalar < Mathf.Epsilon)
             {
                 forwardDirection = playerEye.position - transform.position;
                 isMoving = false;
-            }
-            else if (Vector3.Dot(diff, diff) >= status.MoveCheckThreshold)
-            {
-                forwardDirection = diff.normalized;
-                isMoving = true;
             }
             else
             {
-                forwardDirection = playerEye.position - transform.position;
-                isMoving = false;
+                forwardDirection = diff.normalized;
+                isMoving = true;
             }
             /// フラグ切り替えたフレームだけ<see cref="Animator.SetBool(string, bool)"/>する
             if (animator.GetBool(AnimParam.IsMoving.ToString()) != isMoving)

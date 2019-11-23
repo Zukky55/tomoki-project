@@ -46,7 +46,7 @@ namespace VRShooting
         /// <summary>Variable for storing <see cref="masterData"/></summary>
         GunStatus status;
 
-        public event Action OnHit = ()=>{};
+        public event Action OnHit = () => { };
 
         /// <summary>
         /// input provider
@@ -56,7 +56,7 @@ namespace VRShooting
         /// <summary>
         /// MachineGun roller
         /// </summary>
-        IRollable roller =null;
+        IRollable roller = null;
 
         protected override void Awake()
         {
@@ -72,8 +72,13 @@ namespace VRShooting
         /// </summary>
         public override void MUpdate()
         {
+            elapsedTimeSinseFire += Time.deltaTime;
+
             roller.Roll(inputProvider, ref barrelRocator);
-            Fire();
+            if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) || Input.GetMouseButton(1))
+            {
+                Fire();
+            }
             Debug.DrawLine(muzzle.position, crossHair.position, Color.red);
         }
 
@@ -88,10 +93,8 @@ namespace VRShooting
         /// </summary>
         public void Fire()
         {
-            elapsedTimeSinseFire += Time.deltaTime;
 
-            if (!Input.GetMouseButton(1)
-                || elapsedTimeSinseFire < status.FireInterval
+            if (elapsedTimeSinseFire < status.FireInterval
                 || isReloading)
             {
                 return;
